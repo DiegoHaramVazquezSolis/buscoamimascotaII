@@ -1,0 +1,29 @@
+{
+  "name": "buscoamimascotaII",
+  "version": "1.0.0",
+  "description": "Plataforma web Busco a mi mascota",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "cross-env NODE_ENV=production node server.js"
+  },
+  "repository": "https://github.com/DiegoHaramVazquezSolis/buscoamimascotaII.git",
+  "author": "DiegoHaramVazquezSolis <diegovazquezo@live.com.mx>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.4",
+    "firebase": "^6.0.2",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-dom": "^16.8.6",
+    "react-dropzone": "^10.1.4",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
+  }
+}
