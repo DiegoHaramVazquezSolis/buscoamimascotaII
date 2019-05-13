@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const ButtonRaised = ({ className, disabled, type, value, onClick }) => {
+const ButtonRaised = ({ className, disabled, type, value, onClick, required }) => {
     return (
         <>
             <input
@@ -8,7 +8,8 @@ const ButtonRaised = ({ className, disabled, type, value, onClick }) => {
                 type={type}
                 value={value}
                 disabled={disabled}
-                onClick={onClick} />
+                onClick={onClick}
+                required={required} />
             <style jsx>{`
                 .primary {
                     font-family: 'Montserrat', sans-serif;
@@ -45,7 +46,8 @@ const ButtonRaised = ({ className, disabled, type, value, onClick }) => {
 
 ButtonRaised.defaultProps = {
     disabled: false,
-    type: 'button'
+    type: 'button',
+    required: true
 }
 
 ButtonRaised.propTypes = {
@@ -53,7 +55,8 @@ ButtonRaised.propTypes = {
     className: PropTypes.string,
     type: PropTypes.oneOf(['submit', 'button', 'reset']),
     value: PropTypes.string.isRequired,
-    onClick: PropTypes.func
+    onClick: PropTypes.func.isRequired,
+    required: PropTypes.bool
 };
 
 export default ButtonRaised;
