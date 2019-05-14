@@ -10,6 +10,11 @@ app
 .then(() => {
     const server = express();
 
+    server.get('/home', (req, res) => {
+        const actualPage = '/';
+        app.render(req, res, actualPage);
+    });
+
     server.get('/caso/:id', (req, res) => {
         const actualPage = '/caso';
         const queryParams = { id: req.params.id };
