@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const Card = ({ children }) => {
     return (
         <>
-            <div>
+            <div className='cardContainer'>
                 <div className={`card`}>
                     {children}
                 </div>
@@ -18,11 +18,28 @@ const Card = ({ children }) => {
                     box-sizing: border-box;
                     padding: 0;
                     background-color: #fff;
-                    width: 20rem;
+                    min-width: 0;
                 }
-                div {
+                .cardContainer {
+                    -ms-flex: 0 0 33.3333%;
+                    flex: 0 0 33.3333%;
+                    max-width: 33.3333%;
                     padding-right: 15px;
                     padding-left: 15px;
+                }
+                @media (max-width: 1199px) {
+                    .cardContainer {
+                        -ms-flex: 0 0 50%;
+                        flex: 0 0 50%;
+                        max-width: 50%;
+                    }
+                }
+                @media (max-width: 768px) {
+                    .cardContainer {
+                        -ms-flex: 0 0 100%;
+                        flex: 0 0 100%;
+                        max-width: 100%;
+                    }
                 }
             `}</style>
         </>
