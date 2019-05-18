@@ -10,6 +10,19 @@ const ListItem = ({ content, iconFaCode, iconColor }) => {
                 <span>{content}</span>
             </div>
             <style jsx>{`
+                .listIcon {
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    position: relative;
+                    overflow: hidden;
+                    font-size: 1.25rem;
+                    align-items: center;
+                    flex-shrink: 0;
+                    border-radius: 50%;
+                    justify-content: center;
+                    -moz-user-select: none;
+                }
                 .listItem {
                     padding-left: 16px;
                     padding-right: 16px;
