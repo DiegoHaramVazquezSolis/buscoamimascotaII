@@ -1,23 +1,20 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import H6Styled from '../styled/H6Styled';
 
 const Tab = ({ children, active, className, href, as }) => {
     return (
         <>
             <Link as={as} href={href}>
                 <div className={`${active ? 'active' : ''} ${className}`}>
-                    {children}
+                    <H6Styled style={{ fontWeight: active ? '600' : '' }}>{children}</H6Styled>
                 </div>
             </Link>
             <style jsx>{`
                 div {
-                    font-family: 'Open Sans' sans-serif;
                     align-items: center;
                     text-align: center;
-                    letter-spacing: 0.15px;
                     color: rgba(0, 150, 170, 0.65);
-                    font-size: 20px;
-                    font-style: normal;
                     padding-left: 1.10rem;
                     padding-right: 1.10rem;
                     cursor: pointer;

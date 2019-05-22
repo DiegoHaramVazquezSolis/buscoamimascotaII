@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import H5Styled from '../styled/H5Styled';
 
 class Dialog extends React.Component {
     constructor(props) {
@@ -40,7 +41,7 @@ class Dialog extends React.Component {
                     <div className='dialogContainer' style={{ opacity: open ? 1 : 0, transition: 'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms' }}>
                         <div className='dialog' ref={this.setWrapperRef}>
                             <div className='dialogTitle'>
-                                <h5>{title}</h5>
+                                <H5Styled>{title}</H5Styled>
                             </div>
                             <div className='dialogBody'>
                                 {children}
@@ -99,10 +100,6 @@ class Dialog extends React.Component {
                             max-height: none;
                             border-radius: 0;
                         }
-                    }
-                    h5 {
-                        font-family: 'Montserrat' sans-serif;
-                        font-size: 24px;
                     }
                     .dialogTitle {
                         flex: 0 0 auto;

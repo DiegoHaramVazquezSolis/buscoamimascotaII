@@ -1,22 +1,21 @@
 import PropTypes from 'prop-types';
+import TextForButtons from '../../styled/TextForButtons';
 
 const ButtonOutlined = ({ className, disabled, type, value, onClick, required }) => {
     return (
         <>
-            <input
+            <button
                 className={`primary ${!disabled ? '' : 'disabled'} btn ${className}`}
                 type={type}
-                value={value}
                 disabled={disabled}
                 onClick={onClick}
-                required={required} />
+                required={required}>
+                    <TextForButtons>{value}</TextForButtons>
+                </button>
             <style jsx>{`
                 .primary {
-                    font-family: 'Montserrat', sans-serif;
-                    font-style: normal;
-                    font-weight: 500;
-                    letter-spacing: 1.25px;
-                    text-transform: uppercase;
+                    padding-right: 16px;
+                    padding-left: 16px;
                     background: transparent;
                     border: 2px solid #26C7DC;
                     box-sizing: border-box;

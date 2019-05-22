@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Subtitle1 from '../../styled/Subtitle1';
 
 const ListItem = ({ content, iconFaCode, iconColor }) => {
     return (
@@ -7,7 +8,7 @@ const ListItem = ({ content, iconFaCode, iconColor }) => {
                 <div className='listIcon'>
                     <i className={iconFaCode ? iconFaCode : ''} style={{ color: iconColor }}></i>
                 </div>
-                <span>{content}</span>
+                <Subtitle1 style={{ marginLeft: '.75rem' }}>{content}</Subtitle1>
             </div>
             <style jsx>{`
                 .listIcon {
@@ -52,12 +53,6 @@ const ListItem = ({ content, iconFaCode, iconColor }) => {
                 .listItem:focus {
                     background-color: rgba(0, 0, 0, 0.18);
                     transition: background-color 100ms ease-in;
-                }
-                span {
-                    font-family: 'Open Sans' sans-serif;
-                    font-size: 16px;
-                    letter-spacing: 0.15px;
-                    margin-left: .75rem;
                 }
             `}</style>
         </>

@@ -10,6 +10,7 @@ const Card = ({ children }) => {
             </div>
             <style jsx>{`
                 .card {
+                    overflow: hidden;
                     border-radius: 4px;
                     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
                     display: flex;
@@ -24,8 +25,8 @@ const Card = ({ children }) => {
                     -ms-flex: 0 0 33.3333%;
                     flex: 0 0 33.3333%;
                     max-width: 33.3333%;
-                    padding-right: 15px;
-                    padding-left: 15px;
+                    padding-right: 10px;
+                    padding-left: 10px;
                 }
                 @media (max-width: 1199px) {
                     .cardContainer {

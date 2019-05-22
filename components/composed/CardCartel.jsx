@@ -9,6 +9,7 @@ import CardHeader from '../primitives/Card/CardHeader';
 import CardBody from '../primitives/Card/CardBody';
 import ButtonText from '../primitives/Buttons/ButtonText';
 import ButtonRaised from '../primitives/Buttons/ButtonRaised';
+import Body2 from '../styled/Body2';
 
 const CardCartel = ({ image, date, name, description, contact, id }) => {
     return (
@@ -18,19 +19,19 @@ const CardCartel = ({ image, date, name, description, contact, id }) => {
             <CardBody>
                 {description}
             </CardBody>
-            <div className='ml-2 mb-3'>
+            <div className='mb-3'>
                 <Row>
-                    <Col xs={4}>
-                        <ButtonText value='Ver mas' />
+                    <Col xs={4} className='ml-4' style={{ padding: '0' }}>
+                        <ButtonText style={{ paddingLeft: '12px', paddingRight: '12px' }} textStyle={{ fontSize: '16px' }} className='btn-sm' value='Ver mas' />
                     </Col>
-                    <Col xs={5}>
-                        <ButtonRaised value='Contactar' />
+                    <Col xs={4} style={{padding: '0' }}>
+                        <ButtonRaised style={{ paddingLeft: '12px', paddingRight: '12px' }} textStyle={{ fontSize: '16px' }} className='btn-sm' value='Contactar' />
                     </Col>
-                    <Col xs={2} className='ml-2'>
+                    <Col xs={2} className='ml-3'>
                         <OverlayTrigger
                             key={'placement'}
                             placement={'bottom'}
-                            overlay={<Tooltip id={`tooltip`}>Compartir</Tooltip>}>
+                            overlay={<Tooltip id={`tooltip`}><Body2>Compartir</Body2></Tooltip>}>
                             <i className='fas fa-share fa-2x'></i>
                         </OverlayTrigger>
                     </Col>

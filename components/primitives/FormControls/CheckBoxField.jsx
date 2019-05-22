@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
+import Subtitle1 from '../../styled/Subtitle1';
 
 const CheckBoxField = ({ name, label, checked, onChange, className, required }) => {
     return (
         <>
         <label className={`container ${className}`}>
-            {label}
+            <Subtitle1>{label}</Subtitle1>
             <input
                 type='checkbox'
                 name={name}
@@ -15,18 +16,10 @@ const CheckBoxField = ({ name, label, checked, onChange, className, required }) 
         </label>
          <style jsx>{`
             .container {
-                font-family: 'Open Sans' sans-serif;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 16px;
-                letter-spacing: 0.15px;
                 display: block;
                 position: relative;
                 padding-left: 35px;
                 cursor: pointer;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
                 user-select: none;
             }
 

@@ -1,22 +1,22 @@
 import PropTypes from 'prop-types';
+import TextForButtons from '../../styled/TextForButtons';
 
-const ButtonRaised = ({ className, disabled, type, value, onClick, required }) => {
+const ButtonRaised = ({ className, disabled, type, value, onClick, required, style, textStyle }) => {
     return (
         <>
-            <input
+            <button
                 className={`primary ${!disabled ? '' : 'disabled'} btn ${className}`}
                 type={type}
-                value={value}
                 disabled={disabled}
                 onClick={onClick}
-                required={required} />
+                style={style}
+                required={required}>
+                    <TextForButtons style={textStyle}>{value}</TextForButtons>
+                </button>
             <style jsx>{`
                 .primary {
-                    font-family: 'Montserrat', sans-serif;
-                    font-style: normal;
-                    font-weight: 500;
-                    letter-spacing: 1.25px;
-                    text-transform: uppercase;
+                    padding-right: 16px;
+                    padding-left: 16px;
                     background: #26C7DC;
                     box-shadow: 0px 2px 4px rgba(38, 199, 220, 0.25);
                     border-radius: 4px;
@@ -56,7 +56,8 @@ ButtonRaised.propTypes = {
     type: PropTypes.oneOf(['submit', 'button', 'reset']),
     value: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
-    required: PropTypes.bool
+    required: PropTypes.bool,
+    textStyle: PropTypes.object
 };
 
 export default ButtonRaised;

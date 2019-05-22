@@ -1,18 +1,10 @@
 import PropTypes from 'prop-types';
+import Caption from '../../styled/Caption';
 
 const CardBody = ({ children }) => {
     return (
         <>
-            <p>{children}</p>
-            <style jsx>{`
-                p {
-                    font-family: Montserrat;
-                    font-size: 12px;
-                    letter-spacing: 0.4px;
-                    margin-left: .75rem;
-                    margin-right: 1.25rem;
-                }
-            `}</style>
+            <Caption style={{ marginLeft: '.75rem', marginRight: '1.25rem', marginBottom: '1.5rem'}}>{children}</Caption>
         </>
     );
 }

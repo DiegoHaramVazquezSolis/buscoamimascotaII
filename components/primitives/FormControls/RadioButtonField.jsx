@@ -1,25 +1,21 @@
 import PropTypes from 'prop-types';
+import Subtitle1 from '../../styled/Subtitle1';
 
 const RadioButtonField = ({ name, label, checked, onChange, className, required }) => {
     return (
         <>
         <label className={`container ${className}`}>
-            {label}
+            <Subtitle1>{label}</Subtitle1>
             <input
                 type='radio'
                 name={name}
                 checked={checked}
                 onChange={onChange}
                 required={required} />
-                <span className='checkmark'></span>
+                <span className='radiomark'></span>
         </label>
          <style jsx>{`
             .container {
-                font-family: 'Open Sans' sans-serif;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 16px;
-                letter-spacing: 0.15px;
                 display: block;
                 position: relative;
                 padding-left: 35px;
@@ -30,7 +26,7 @@ const RadioButtonField = ({ name, label, checked, onChange, className, required 
                 user-select: none;
             }
 
-            .checkmark {
+            .radiomark {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -41,37 +37,37 @@ const RadioButtonField = ({ name, label, checked, onChange, className, required 
                 border-radius: 50%;
             }
 
-            .container:hover input ~ .checkmark {
+            .container:hover input ~ .radiomark {
                 background: rgba(38, 199, 220, .35);
             }
             
-            .container:focus input ~ .checkmark {
+            .container:focus input ~ .radiomark {
                 background: rgba(38, 199, 220, .50);
             }
 
-            .container input:checked ~ .checkmark {
+            .container input:checked ~ .radiomark {
                 background: #26C7DC;
             }
 
-            .container:hover input:checked ~ .checkmark {
+            .container:hover input:checked ~ .radiomark {
                 background: rgba(38, 199, 220, .60);
             }
 
-            .container:focus input:checked ~ .checkmark {
+            .container:focus input:checked ~ .radiomark {
                 background: rgba(38, 199, 220, .75);
             }
               
-            .checkmark:after {
+            .radiomark:after {
                 content: "";
                 position: absolute;
                 display: none;
             }
               
-            .container input:checked ~ .checkmark:after {
+            .container input:checked ~ .radiomark:after {
                 display: block;
             }
               
-            .container .checkmark:after {
+            .container .radiomark:after {
                 left: 9px;
                 top: 5px;
                 width: 5px;

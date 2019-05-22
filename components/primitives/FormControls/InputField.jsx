@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import Caption from '../../styled/Caption';
 
-const InputField = ({ name, label, error, placeholder, disabled, type, className, value, onChange }) => {
+const InputField = ({ name, label, placeholder, disabled, type, className, value, onChange }) => {
     return (
         <>
-            <label htmlFor={name}>{label}</label>
+            <label htmlFor={name}><Caption>{label}</Caption></label>
             <input
                 id={name}
                 name={name}
@@ -14,17 +15,10 @@ const InputField = ({ name, label, error, placeholder, disabled, type, className
                 value={value}
                 disabled={disabled} />
             <style jsx>{`
-                label {
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 12px;
-                    letter-spacing: 0.4px;
-                    opacity: 0.87;
-                }
                 .primary {
+                    //Subtitle1
                     font-family: 'Open Sans', sans-serif;
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 16px;
+                    font-size: 20px;
                     line-height: 24px;
                     letter-spacing: 0.15px;
                 }
