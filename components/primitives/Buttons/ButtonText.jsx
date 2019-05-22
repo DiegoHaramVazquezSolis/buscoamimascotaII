@@ -55,7 +55,8 @@ ButtonText.propTypes = {
     value: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     required: PropTypes.bool,
-    textStyle: PropTypes.object
+    textStyle: PropTypes.object,
+    style: PropTypes.object
 };
 
 export default ButtonText;

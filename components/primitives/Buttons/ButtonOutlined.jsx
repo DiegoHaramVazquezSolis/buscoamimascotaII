@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import TextForButtons from '../../styled/TextForButtons';
 
-const ButtonOutlined = ({ className, disabled, type, value, onClick, required }) => {
+const ButtonOutlined = ({ className, disabled, type, value, onClick, required, style, textStyle }) => {
     return (
         <>
             <button
@@ -9,8 +9,9 @@ const ButtonOutlined = ({ className, disabled, type, value, onClick, required })
                 type={type}
                 disabled={disabled}
                 onClick={onClick}
+                style={style}
                 required={required}>
-                    <TextForButtons>{value}</TextForButtons>
+                    <TextForButtons style={textStyle}>{value}</TextForButtons>
                 </button>
             <style jsx>{`
                 .primary {
@@ -57,7 +58,9 @@ ButtonOutlined.propTypes = {
     type: PropTypes.oneOf(['submit', 'button', 'reset']),
     value: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
-    required: PropTypes.bool
+    required: PropTypes.bool,
+    textStyle: PropTypes.object,
+    style: PropTypes.object
 };
 
 export default ButtonOutlined;
