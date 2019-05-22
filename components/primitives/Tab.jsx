@@ -7,7 +7,7 @@ const Tab = ({ children, active, className, href, as }) => {
         <>
             <Link as={as} href={href}>
                 <div className={`${active ? 'active' : ''} ${className}`}>
-                    <H6Styled style={{ fontWeight: active ? '600' : '' }}>{children}</H6Styled>
+                    <H6Styled style={{ fontWeight: active ? '600' : '', textTransform: 'uppercase' }}>{children}</H6Styled>
                 </div>
             </Link>
             <style jsx>{`

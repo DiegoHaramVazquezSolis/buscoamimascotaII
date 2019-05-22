@@ -6,7 +6,7 @@ import Tab from '../primitives/Tab';
 const Navigation = ({ activeIndex }) => {
     return (
         <>
-            <Navbar expand='lg'>
+            <Navbar expand='lg' className='mt-5 mb-3'>
                 <Navbar.Brand></Navbar.Brand>
                 <Navbar.Toggle aria-controls='busco-a-mi-mascota-nav' />
                 <Navbar.Collapse className='justify-content-center' id='busco-a-mi-mascota-nav'>
