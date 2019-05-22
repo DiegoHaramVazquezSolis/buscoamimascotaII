@@ -21,6 +21,8 @@ const InputField = ({ name, label, placeholder, disabled, type, className, value
                     font-size: 20px;
                     line-height: 24px;
                     letter-spacing: 0.15px;
+                    background: transparent;
+                    border: 1.5px solid #ced4da;
                 }
                 .primary:focus {
                     border-color: rgba(38, 199, 220, 0.5);
