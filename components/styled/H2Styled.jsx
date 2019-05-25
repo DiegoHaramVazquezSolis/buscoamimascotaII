@@ -8,7 +8,7 @@ const H2Styled = ({ children, style }) => {
                 h2 {
                     font-family: 'Montserrat', sans-serif;
                     font-weight: 300;
-                    font-size: 62px;
+                    font-size: 58px;
                     line-height: 73px;
                     letter-spacing: -0.5px;
                 }

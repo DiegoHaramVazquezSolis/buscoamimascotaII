@@ -1,58 +1,49 @@
 import PropTypes from 'prop-types';
 import Caption from '../../styled/Caption';
 
-const InputField = ({ name, label, placeholder, disabled, type, className, value, onChange }) => {
+const SelectField = ({ name, label, className, onChange, value, disabled, children }) => {
     return (
         <>
             <label htmlFor={name}><Caption>{label}</Caption></label>
-            <input
+            <select
                 id={name}
                 name={name}
-                className={`primary form-control ${className}`}
-                type={type}
-                placeholder={placeholder}
+                type='select'
                 onChange={onChange}
                 value={value}
-                disabled={disabled} />
+                className={`form-control ${className ? className : ''}`}
+                disabled={disabled}>
+                    {children}
+                </select>
             <style jsx>{`
-                .primary {
+                select {
                     //Subtitle1
                     font-family: 'Open Sans', sans-serif;
                     font-size: 16px;
                     line-height: 24px;
                     letter-spacing: 0.15px;
-                    background: transparent;
+                    background: transparent !important;
                     border: 1.5px solid #ced4da;
                 }
-                .primary:focus {
+                select:focus {
                     border-color: rgba(38, 199, 220, 0.5);
-                    box-shadow: 0 0 0 .2rem rgba(39, 199, 220,.25)
+                    box-shadow: 0 0 0 .2rem rgba(39, 199, 220,.25);
                 }
             `}</style>
         </>
     );
 }
 
-InputField.defaultProps = {
-    disabled: false,
-    error: false,
-    type: 'text'
-}
-
-InputField.propTypes = {
-    disabled: PropTypes.bool,
-    className: PropTypes.string,
-    type: PropTypes.oneOf([
-        'text',
-        'number',
-        'password',
-        'date',
-        'email',
-        'tel'
-    ]),
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string.isRequired
+SelectField.defaultProps = {
+    disabled: false
 };
 
-export default InputField;
+SelectField.propTypes = {
+    disabled: PropTypes.bool,
+    className: PropTypes.string,
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    children: PropTypes.element.isRequired
+};
+
+export default SelectField;

@@ -7,7 +7,7 @@ const Caption = ({ children, style }) => {
             <style jsx>{`
                 small {
                     font-family: 'Montserrat', sans-serif;
-                    font-size: 16px;
+                    font-size: 12px;
                     line-height: 16px;
                     letter-spacing: 0.4px;
                 }

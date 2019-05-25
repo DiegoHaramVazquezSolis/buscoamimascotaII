@@ -8,7 +8,7 @@ const H3Styled = ({ children, style }) => {
                 h3 {
                     font-family: 'Montserrat', sans-serif;
                     font-weight: normal;
-                    font-size: 50px;
+                    font-size: 46px;
                     line-height: 59px;
                 }
             `}</style>

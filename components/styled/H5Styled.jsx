@@ -9,7 +9,7 @@ const H5Styled = ({ children, style }) => {
                     font-family: 'Montserrat', sans-serif;
                     font-style: normal;
                     font-weight: normal;
-                    font-size: 28px;
+                    font-size: 24px;
                     line-height: 29px;
                 }
             `}</style>

@@ -11,7 +11,7 @@ const TextForButtons = ({ children, style }) => {
                     margin-bottom: 0;
                     font-family: 'Montserrat', sans-serif;
                     font-weight: 500;
-                    font-size: 18px;
+                    font-size: 14px;
                     line-height: 17px;
                     letter-spacing: 1.25px;
                     text-transform: uppercase;

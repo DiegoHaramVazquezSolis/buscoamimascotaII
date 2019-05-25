@@ -7,7 +7,7 @@ const H6Styled = ({ children, style }) => {
             <style jsx>{`
                 h6 {
                     font-family: 'Open Sans', sans-serif;
-                    font-size: 24px;
+                    font-size: 20px;
                     line-height: 27px;
                     letter-spacing: 0.15px;
                 }

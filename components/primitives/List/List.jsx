@@ -9,11 +9,11 @@ const List = ({ children }) => {
             <style jsx>{`
                 div {
                     width: 100%;
-                    max-width: 360px;
                     background-color: #fff;
                     padding-top: 8px;
                     padding-bottom: 8px;
                     background-color: #fff;
+                    border-radius: 4px;
                 }
             `}</style>
         </>

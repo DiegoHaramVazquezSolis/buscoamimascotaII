@@ -8,7 +8,7 @@ const Overline = ({ children, style }) => {
                 small {
                     font-family: 'Montserrat', sans-serif;
                     font-weight: 500;
-                    font-size: 14px;
+                    font-size: 10px;
                     line-height: 16px;
                     letter-spacing: 1.5px;
                     text-transform: uppercase;

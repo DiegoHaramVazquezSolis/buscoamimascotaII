@@ -7,7 +7,7 @@ const Body2 = ({ children, style }) => {
             <style jsx>{`
                 p {
                     font-family: 'Montserrat', sans-serif;
-                    font-size: 18px;
+                    font-size: 14px;
                     line-height: 20px;
                     letter-spacing: 0.25px;
                 }

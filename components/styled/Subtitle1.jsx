@@ -7,7 +7,7 @@ const Subtitle1 = ({ children, style }) => {
             <style jsx>{`
                 p {
                     font-family: 'Open Sans', sans-serif;
-                    font-size: 20px;
+                    font-size: 16px;
                     line-height: 24px;
                     letter-spacing: 0.15px;
                 }

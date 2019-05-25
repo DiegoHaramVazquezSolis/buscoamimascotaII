@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 
-const H4Styled = ({ children, style }) => {
+const H4Styled = ({ children, style, className }) => {
     return (
         <>
-            <h4 style={style ? style : null}>{children}</h4>
+            <h4 className={className ? className : ''} style={style ? style : null}>{children}</h4>
             <style jsx>{`
                 h4 {
                     font-family: 'Montserrat', sans-serif;
                     font-weight: normal;
-                    font-size: 38px;
+                    font-size: 34px;
                     line-height: 41px;
                     letter-spacing: 0.25px;
                 }
