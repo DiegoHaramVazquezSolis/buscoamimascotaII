@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import H5Styled from '../styled/H5Styled';
 import ButtonOutlined from './Buttons/ButtonOutlined';
+import Body1 from '../styled/Body1';
+import Subtitle1 from '../styled/Subtitle1';
 
 const thumbsContainer = {
   display: 'flex',
@@ -50,12 +51,12 @@ function DropZoneWithPreview({ title, files, getRootProps, getInputProps, remove
   }, [files]);
   return (
         <>
-          <label className='mt-3'><H5Styled>{title}</H5Styled></label>
+          <label className='mt-3'><Body1>{title}</Body1></label>
             <section className="container">
                 {files.length <= 0 ?
                     <div {...getRootProps()} className='dropzone'>
                         <input {...getInputProps()} />
-                        <p className='text-center'>Arrastra aqui la imagen de tu mascota, o da click para seleccionarla</p>
+                        <Subtitle1 className='text-center'>Arrastra aqui la imagen de tu mascota, o da click para seleccionarla</Subtitle1>
                     </div>
                     :
                     <div className='d-flex justify-content-center'>
@@ -77,22 +78,19 @@ function DropZoneWithPreview({ title, files, getRootProps, getInputProps, remove
                     flex: 1;
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
                     align-text: center;
-                    padding: 20px;
+                    padding: 42px;
                     border-width: 2px;
                     border-radius: 2px;
-                    border-color: #aaaaaa;
+                    border-color: #AAAAAA;
                     border-style: dashed;
-                    background-color: #e2e2e2;
-                    color: #7c7c7c;
+                    background-color: #E2E2E2;
+                    color: #7C7C7C;
                     outline: none;
-                    transition: border .24s ease-in-out;
                 }
                 .container {
                     display: flex;
                     flex-direction: column;
-                    font-family: sans-serif;
                 }
             `}</style>
         </>
