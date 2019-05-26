@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
             {children}
             <style jsx global>{`
                 body {
-                    background: #EFEFEF;
+                    background: #FFFFFF;
                 }
             `}</style>
         </div>
