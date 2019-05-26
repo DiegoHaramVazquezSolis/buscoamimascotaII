@@ -17,6 +17,9 @@ import ListItem from '../components/primitives/List/ListItem';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Body2 from '../components/styled/Body2';
+import ButtonText from '../components/primitives/Buttons/ButtonText';
+import { primaryColorRGB } from '../components/styled/Constants';
+import Map from '../components/primitives/Map/Map';
 
 const SubtitlePublicar = ({ children }) => (
     <>
@@ -111,7 +114,7 @@ const Publicar = () => {
                                 removeImages={removeImages} />
                         </section>
                     </Col>
-                    <Col sm={12} md={6} className='mt-2'>
+                    <Col sm={12} md={6} className='mt-3'>
                         <Body1>Señas particulares</Body1>
                         <Body2 style={{ color: '#828282' }}>
                             Manchas, color de pelo, color de ojos, etc.
@@ -125,7 +128,7 @@ const Publicar = () => {
                             </ListItem>
                         </List>
                     </Col>
-                    <Col sm={12} md={6} className='mt-2'>
+                    <Col sm={12} md={6} className='mt-3'>
                         <Body1>Cuidados especiales</Body1>
                         <Body2 style={{ color: '#828282' }}>
                             Medicamentos, tratamientos, carácter (ej: Violento, timido), etc.
@@ -144,20 +147,13 @@ const Publicar = () => {
                             Información sobre la desaparición
                         </SubtitlePublicar>
                     </Col>
-                    <Col xl={6} className='mt-2'>
-                        <InputField
-                            name='cp'
-                            label='Codigo Postal'
-                            placeholder='Codigo postal' />
-                            <ButtonOutlined className='mt-2 pt-0 pb-0' value='Validar CP' />
-                    </Col>
-                    <Col xl={6} className='mt-2'>
-                        <SelectField
-                            name='colonia'
-                            label='Colonia'
-                            disabled>
-                                <option value='443900'>Huentitan el alto</option>
-                        </SelectField>
+                    <Col xl={12} className='mt-2'>
+                        <Body2 style={{ color: '#828282' }}>
+                            Arrastra el marcador <i style={{ color: '#D00' }} className="fas fa-map-marker"></i> para determinar la ubicación.
+                            <br/>
+                            Presiona <img src='/static/media/baseline-gps_fixed-24px.svg' /> para colocar el marcador en tu ubicación actual.
+                        </Body2>
+                        <Map />
                     </Col>
                     <Col xl={6} className='mt-2'>
                         <InputField
@@ -166,15 +162,7 @@ const Publicar = () => {
                             name='lastSeen'
                             type='date' />
                     </Col>
-                    <Col xl={6} className='mt-2'>
-                        <InputField
-                            label='Hora de desaparición'
-                            placeholder='HH:MM (Ej: 11:49)'
-                            type='time'
-                            name='lastSeen'
-                            required={false} />
-                    </Col>
-                    <Col xl={4} className='mt-3 mb-2'>
+                    <Col xl={6} className='mt-5 mb-3'>
                         <CheckBoxField
                             name='haveId'
                             label='Tenia placa de identificación' />
@@ -192,10 +180,10 @@ const Publicar = () => {
                                                 <Body1>Selecciona el medio de contacto</Body1>
                                             </Col>
                                             <Col className='d-flex justify-content-center mb-2 mt-2' sm={12} md={5}>
-                                                <ButtonOutlined className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: '#25D366' }} className='fab m-2 fa-lg fa-whatsapp'></i>} />
-                                                <ButtonOutlined className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: 'black' }} className='fas m-2 fa-lg fa-mobile'></i>} />
-                                                <ButtonOutlined className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: '#32C8f4' }} className='fas m-2 fa-lg fa-phone'></i>} />
-                                                <ButtonOutlined className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: 'black' }} className='fas m-2 fa-lg fa-envelope'></i>} />
+                                                <ButtonText style={{ backgroundColor: `rgba(${primaryColorRGB}, .3)` }} className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: '#25D366' }} className='fab m-2 fa-lg fa-whatsapp'></i>} />
+                                                <ButtonText className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: 'black' }} className='fas m-2 fa-lg fa-mobile'></i>} />
+                                                <ButtonText className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: '#32C8f4' }} className='fas m-2 fa-lg fa-phone'></i>} />
+                                                <ButtonText className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: 'black' }} className='fas m-2 fa-lg fa-envelope'></i>} />
                                             </Col>
                                             <Col sm={12} md={7}>
                                                 {contacto.type && contacto.type === 'envelope' ?
