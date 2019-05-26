@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Subtitle1 from '../../styled/Subtitle1';
+import { primaryColor, primaryVariantColorRGB } from '../../styled/Constants';
 
 const RadioButtonField = ({ name, label, checked, onChange, className, required }) => {
     return (
@@ -33,28 +34,28 @@ const RadioButtonField = ({ name, label, checked, onChange, className, required 
                 height: 25px;
                 width: 25px;
                 background-color: transparent;
-                border: 2.5px solid #26C7DC;
+                border: 2.5px solid ${primaryColor};
                 border-radius: 50%;
             }
 
             .container:hover input ~ .radiomark {
-                background: rgba(38, 199, 220, .35);
+                background: rgba(${primaryVariantColorRGB}, .35);
             }
             
             .container:focus input ~ .radiomark {
-                background: rgba(38, 199, 220, .50);
+                background: rgba(${primaryVariantColorRGB}, .50);
             }
 
             .container input:checked ~ .radiomark {
-                background: #26C7DC;
+                background: ${primaryColor};
             }
 
             .container:hover input:checked ~ .radiomark {
-                background: rgba(38, 199, 220, .60);
+                background: rgba(${primaryVariantColorRGB}, .60);
             }
 
             .container:focus input:checked ~ .radiomark {
-                background: rgba(38, 199, 220, .75);
+                background: rgba(${primaryVariantColorRGB}, .75);
             }
               
             .radiomark:after {

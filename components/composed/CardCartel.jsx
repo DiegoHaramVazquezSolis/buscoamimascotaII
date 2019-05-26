@@ -10,6 +10,7 @@ import CardBody from '../primitives/Card/CardBody';
 import ButtonText from '../primitives/Buttons/ButtonText';
 import ButtonRaised from '../primitives/Buttons/ButtonRaised';
 import Body2 from '../styled/Body2';
+import { primaryColor, primaryColorRGB } from '../styled/Constants';
 
 const CardCartel = ({ image, date, name, description, contact, id }) => {
     return (
@@ -39,17 +40,17 @@ const CardCartel = ({ image, date, name, description, contact, id }) => {
             </div>
             <style jsx>{`
                 i {
-                    color: #26C7DC;
+                    color: ${primaryColor};
                     cursor: pointer;
                 }
                 i:hover {
-                    color: rgba(38, 199, 220, .85);
+                    color: rgba(${primaryColorRGB}, .85);
                 }
                 i:active {
-                    color: rgba(38, 199, 220, .75);
+                    color: rgba(${primaryColorRGB}, .75);
                 }
                 i:focus {
-                    color: rgba(38, 199, 220, .75);
+                    color: rgba(${primaryColorRGB}, .75);
                 }
             `}</style>
         </Card>

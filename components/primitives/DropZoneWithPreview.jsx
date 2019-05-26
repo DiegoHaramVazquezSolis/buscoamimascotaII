@@ -13,7 +13,6 @@ const thumbsContainer = {
 const thumb = {
   display: 'inline-flex',
   borderRadius: 2,
-  border: '1px solid #eaeaea',
   marginBottom: 8,
   marginRight: 8,
   width: 100,
@@ -56,7 +55,7 @@ function DropZoneWithPreview({ title, files, getRootProps, getInputProps, remove
                 {files.length <= 0 ?
                     <div {...getRootProps()} className='dropzone'>
                         <input {...getInputProps()} />
-                        <p>Arrastra aqui la imagen de tu mascota, o da click para seleccionarla</p>
+                        <p className='text-center'>Arrastra aqui la imagen de tu mascota, o da click para seleccionarla</p>
                     </div>
                     :
                     <div className='d-flex justify-content-center'>

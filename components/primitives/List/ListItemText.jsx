@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Subtitle1 from '../../styled/Subtitle1';
+import { primaryColorRGB } from '../../styled/Constants';
 
 const ListItemText = ({ content, iconFaCode, iconColor }) => {
     return (
@@ -44,15 +45,11 @@ const ListItemText = ({ content, iconFaCode, iconColor }) => {
                     transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
                 }
                 .listItemText:hover {
-                    background-color: rgba(0, 0, 0, 0.08);
+                    background-color: rgba(${primaryColorRGB}, 0.08);
                 }
                 .listItemText:active {
-                    background-color: rgba(38, 199, 220, 0.18);
+                    background-color: rgba(${primaryColorRGB}, 0.18);
                     transition: background-color 200ms ease-in;
-                }
-                .listItemText:focus {
-                    background-color: rgba(0, 0, 0, 0.18);
-                    transition: background-color 100ms ease-in;
                 }
             `}</style>
         </>

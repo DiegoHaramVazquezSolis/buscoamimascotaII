@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Caption from '../../styled/Caption';
+import { primaryColorRGB } from '../../styled/Constants';
 
 const InputField = ({ name, label, placeholder, disabled, type, className, value, onChange }) => {
     return (
@@ -22,11 +23,11 @@ const InputField = ({ name, label, placeholder, disabled, type, className, value
                     line-height: 24px;
                     letter-spacing: 0.15px;
                     background: transparent;
-                    border: 1.5px solid #ced4da;
+                    border: 1.5px solid #CED4DA;
                 }
                 .primary:focus {
-                    border-color: rgba(38, 199, 220, 0.5);
-                    box-shadow: 0 0 0 .2rem rgba(39, 199, 220,.25)
+                    border-color: rgba(${primaryColorRGB}, 0.5);
+                    box-shadow: 0 0 0 .2rem rgba(${primaryColorRGB},.25)
                 }
             `}</style>
         </>

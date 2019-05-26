@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import H6Styled from '../styled/H6Styled';
+import { primaryColor } from '../styled/Constants';
+import { primaryColorRGB } from '../styled/Constants';
 
 const Tab = ({ children, active, className, href, as }) => {
     return (
@@ -14,23 +16,23 @@ const Tab = ({ children, active, className, href, as }) => {
                 div {
                     align-items: center;
                     text-align: center;
-                    color: rgba(0, 150, 170, 0.65);
+                    color: rgba(${primaryColorRGB}, 0.8);
                     padding-left: 1.10rem;
                     padding-right: 1.10rem;
                     cursor: pointer;
                 }
                 div:hover {
-                    color: rgba(0, 150, 170, 0.45);
-                    border-bottom: 3px solid rgba(38, 199, 220, 0.45);
+                    color: rgba(${primaryColorRGB}, 0.9);
+                    border-bottom: 2.5px solid rgba(${primaryColorRGB}, 0.45);
                 }
                 .active:hover {
-                    color: rgba(0, 150, 170, 0.8);
-                    border-bottom: 3px solid rgba(38, 199, 220, 0.8);
+                    color: rgba(${primaryColorRGB}, 0.8);
+                    border-bottom: 2.5px solid rgba(${primaryColorRGB}, 0.8);
                 }
                 .active {
-                    color: #0096AA;
+                    color: ${primaryColor};
                     font-weight: 600;
-                    border-bottom: 3px solid #26C7DC;
+                    border-bottom: 2.5px solid rgba(${primaryColorRGB}, 0.7);
                 }
             `}</style>   
         </>

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { secondaryColor } from '../../styled/Constants';
 
 const FloatButton = () => {
     return (
@@ -14,7 +15,7 @@ const FloatButton = () => {
                     bottom:40px;
                     right:40px;
                     border-radius:50px;
-                    background: #D5785F;
+                    background: ${secondaryColor};
                     color: #fff;
                     text-align:center;
                     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import TextForButtons from '../../styled/TextForButtons';
+import { primaryColor, primaryColorRGB } from '../../styled/Constants';
 
 const ButtonOutlined = ({ className, disabled, type, value, onClick, required, style, textStyle }) => {
     return (
@@ -9,7 +10,7 @@ const ButtonOutlined = ({ className, disabled, type, value, onClick, required, s
                 type={type}
                 disabled={disabled}
                 onClick={onClick}
-                style={style}
+                style={style ? style : null}
                 required={required}>
                     <TextForButtons style={textStyle}>{value}</TextForButtons>
                 </button>
@@ -18,20 +19,19 @@ const ButtonOutlined = ({ className, disabled, type, value, onClick, required, s
                     padding-right: 16px;
                     padding-left: 16px;
                     background: transparent;
-                    border: 2px solid #26C7DC;
+                    border: 2px solid ${primaryColor};
                     box-sizing: border-box;
                     border-radius: 4px;
-                    color: #26C7DC;
+                    color: ${primaryColor};
                     transition: background 300ms ease-in-out;
                 }   
                 .primary:hover {
-                    background: rgba(38, 199, 220, 0.1);
+                    background: rgba(${primaryColorRGB}, 0.1);
                 }
                 .primary:active {
-                    background: rgba(38, 199, 220, 0.2);
+                    background: rgba(${primaryColorRGB}, 0.2);
                 }
                 .primary:focus {
-                    background: rgba(38, 199, 220, 0.2);
                     box-shadow: none;
                 }
                 .primary.disabled {

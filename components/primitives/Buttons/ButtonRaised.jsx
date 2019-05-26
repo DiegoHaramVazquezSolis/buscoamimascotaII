@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import TextForButtons from '../../styled/TextForButtons';
+import { primaryVariantColorRGB, primaryColor } from '../../styled/Constants';
 
 const ButtonRaised = ({ className, disabled, type, value, onClick, required, style, textStyle }) => {
     return (
@@ -9,7 +10,7 @@ const ButtonRaised = ({ className, disabled, type, value, onClick, required, sty
                 type={type}
                 disabled={disabled}
                 onClick={onClick}
-                style={style}
+                style={style ? style : null}
                 required={required}>
                     <TextForButtons style={textStyle}>{value}</TextForButtons>
                 </button>
@@ -17,22 +18,19 @@ const ButtonRaised = ({ className, disabled, type, value, onClick, required, sty
                 .primary {
                     padding-right: 16px;
                     padding-left: 16px;
-                    background: #26C7DC;
-                    box-shadow: 0px 2px 4px rgba(38, 199, 220, 0.25);
+                    background: ${primaryColor};
+                    box-shadow: 0px 2px 4px rgba(${primaryVariantColorRGB}, 0.25);
                     border-radius: 4px;
                     color: #fff;
                     transition: box-shadow 300ms ease-in-out, background 300ms ease-in-out;
                 }   
                 .primary:hover {
-                    box-shadow: 0px 4px 4px rgba(38, 199, 220, 0.30);
-                    background: rgba(38, 199, 220, 0.9);
+                    box-shadow: 0px 4px 4px rgba(${primaryVariantColorRGB}, 0.30);
+                    background: rgba(253, 185, 99, 0.9);
                 }
                 .primary:active {
-                    background: rgba(38, 199, 220, 0.75);
-                    box-shadow: 0px 8px 4px rgba(38, 199, 220, 0.25);
-                }
-                .primary:focus {
-                    background: rgba(38, 199, 220, 0.75);
+                    background: rgba(253, 185, 99, 0.8);
+                    box-shadow: 0px 8px 4px rgba(${primaryVariantColorRGB}, 0.25);
                 }
                 .primary.disabled {
                     background: #BDBDBD;
