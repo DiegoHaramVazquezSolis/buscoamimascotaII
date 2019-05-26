@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Navigation from '../components/composed/Navigation';
 import H4Styled from '../components/styled/H4Styled';
-import Subtitle1 from '../components/styled/Subtitle1';
+import Body1 from '../components/styled/Body1';
 import InputField from '../components/primitives/FormControls/InputField';
 import ButtonRaised from '../components/primitives/Buttons/ButtonRaised';
 import TextAreaField from '../components/primitives/FormControls/TextAreaField';
@@ -12,13 +12,11 @@ import DropZoneWithPreview from '../components/primitives/DropZoneWithPreview';
 import ButtonOutlined from '../components/primitives/Buttons/ButtonOutlined';
 import CheckBoxField from '../components/primitives/FormControls/CheckBoxField';
 import RadioButtonField from '../components/primitives/FormControls/RadioButtonField';
-import Caption from '../components/styled/Caption';
 import List from '../components/primitives/List/List';
 import ListItem from '../components/primitives/List/ListItem';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
+import Body2 from '../components/styled/Body2';
 
 const SubtitlePublicar = ({ children }) => (
     <>
@@ -28,7 +26,6 @@ const SubtitlePublicar = ({ children }) => (
         <style jsx>{`
             .subtitle {
                 margin-top: 1rem;
-                margin-bottom: .75rem;
             }
         `}</style>
     </>
@@ -64,16 +61,21 @@ const Publicar = () => {
                 <SubtitlePublicar>
                     Publica a tu mascota
                 </SubtitlePublicar>
-                <form className='row' onSubmit={() => alert('submit')}>
+                <form className='row' onSubmit={(e) => e.preventDefault()}>
                     <Col xl={12}>
-                        <Subtitle1 style={{ color: '#828282' }}>
+                        <Body1 style={{ color: '#828282' }}>
                         Para publicar a tu mascota desaparecida llena el siguiente formulario
-                        </Subtitle1>
+                        </Body1>
                     </Col>
-                    <Col sm={12} md={4} className='mt-3'>
+                    <Col xl={12} className='mt-3'>
+                        <SubtitlePublicar>
+                            Información sobre tu mascota
+                        </SubtitlePublicar>
+                    </Col>
+                    <Col sm={12} md={4} className='mt-2'>
                         <InputField label='Nombre' placeholder='Nombre de tu mascota' />
                     </Col>
-                    <Col sm={12} md={4} className='mt-3'>
+                    <Col sm={12} md={4} className='mt-2'>
                         <SelectField name='especie' label='Especie'>
                             <option value='perro'>Perro</option>
                             <option value='gato'>Gato</option>
@@ -81,10 +83,9 @@ const Publicar = () => {
                             <option value='otro'>Otro</option>
                         </SelectField>
                     </Col>
-                    <Col sm={12} md={4} className='mt-3'>
-                        <Caption>Genero</Caption>
-                        <br/>
-                        <div className='form-check-inline mt-3'>
+                    <Col sm={12} md={4} className='mt-2'>
+                        <Body1>Genero</Body1>
+                        <div className='form-check-inline mt-1'>
                             <RadioButtonField
                                 name='genero'
                                 label='Macho'
@@ -94,14 +95,14 @@ const Publicar = () => {
                                 label='Hembra' />
                         </div>
                     </Col>
-                    <Col sm={12} md={6} className='mt-3'>
+                    <Col sm={12} md={6} className='mt-2'>
                         <TextAreaField
                             name='description'
                             label='Descripción'
                             rows={6}
                             placeholder='Descripción de tu mascota' />
                     </Col>
-                    <Col sm={12} md={6} className='mt-3'>
+                    <Col sm={12} md={6} className='mt-2'>
                         <section className='container'>
                             <DropZoneWithPreview title='Imagen de tu mascota'
                                 files={files}
@@ -110,19 +111,47 @@ const Publicar = () => {
                                 removeImages={removeImages} />
                         </section>
                     </Col>
-                    <Col xl={12}>
+                    <Col sm={12} md={6} className='mt-2'>
+                        <Body1>Señas particulares</Body1>
+                        <Body2 style={{ color: '#828282' }}>
+                            Manchas, color de pelo, color de ojos, etc.
+                        </Body2>
+                        <List>
+                            <ListItem>
+                                <InputField placeholder='Tiene una mancha negra en el ojo' required={false}/>
+                            </ListItem>
+                            <ListItem>
+                                <ButtonOutlined className='mt-2 pt-0 pb-0' value='Agregar otra' />
+                            </ListItem>
+                        </List>
+                    </Col>
+                    <Col sm={12} md={6} className='mt-2'>
+                        <Body1>Cuidados especiales</Body1>
+                        <Body2 style={{ color: '#828282' }}>
+                            Medicamentos, tratamientos, carácter (ej: Violento, timido), etc.
+                        </Body2>
+                        <List>
+                            <ListItem>
+                                <InputField placeholder='Puede morder cuando esta asustado' required={false}/>
+                            </ListItem>
+                            <ListItem>
+                                <ButtonOutlined className='mt-2 pt-0 pb-0' value='Agregar otro' />
+                            </ListItem>
+                        </List>
+                    </Col>
+                    <Col xl={12} className='mt-4'>
                         <SubtitlePublicar>
                             Información sobre la desaparición
                         </SubtitlePublicar>
                     </Col>
-                    <Col xl={6} className='mt-3'>
+                    <Col xl={6} className='mt-2'>
                         <InputField
                             name='cp'
                             label='Codigo Postal'
                             placeholder='Codigo postal' />
                             <ButtonOutlined className='mt-2 pt-0 pb-0' value='Validar CP' />
                     </Col>
-                    <Col xl={6} className='mt-3'>
+                    <Col xl={6} className='mt-2'>
                         <SelectField
                             name='colonia'
                             label='Colonia'
@@ -130,109 +159,62 @@ const Publicar = () => {
                                 <option value='443900'>Huentitan el alto</option>
                         </SelectField>
                     </Col>
-                    <Col xl={6} className='mt-3'>
+                    <Col xl={6} className='mt-2'>
                         <InputField
                             label='Fecha de desaparición'
                             placeholder='Fecha de desaparición'
                             name='lastSeen'
                             type='date' />
                     </Col>
-                    <Col xl={6} className='mt-3'>
+                    <Col xl={6} className='mt-2'>
                         <InputField
                             label='Hora de desaparición'
-                            placeholder='Hora de desaparición'
-                            name='lastSeen' />
+                            placeholder='HH:MM (Ej: 11:49)'
+                            type='time'
+                            name='lastSeen'
+                            required={false} />
                     </Col>
-                    <Col xl={4} className='mt-3'>
+                    <Col xl={4} className='mt-3 mb-2'>
                         <CheckBoxField
                             name='haveId'
                             label='Tenia placa de identificación' />
                     </Col>
                     <Col xl={12}>
                         <SubtitlePublicar>
-                            Información especifica
+                            Información de contacto
                         </SubtitlePublicar>
-                    </Col>
-                    <Col sm={12} md={6} className='mb-3'>
-                        <div className='card' style={{ boxShadow: '0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12)' }}>
-                            <div className='card-body'>
-                                <Subtitle1>Señas particulares</Subtitle1>
+                        <Row>
+                            <Col xl={10}>
                                 <List>
                                     <ListItem>
-                                        <InputField placeholder='Tiene una mancha negra en el ojo' />
-                                    </ListItem>
-                                    <ListItem>
-                                        <ButtonOutlined className='mt-2 pt-0 pb-0' value='Agregar otra' />
-                                    </ListItem>
-                                </List>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col sm={12} md={6} className='mb-3'>
-                        <div className='card' style={{ boxShadow: '0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12)' }}>
-                            <div className='card-body'>
-                                <Subtitle1>Cuidados especiales</Subtitle1>
-                                <List>
-                                    <ListItem>
-                                        <InputField placeholder='Requiere X medicamento' />
+                                        <Row>
+                                            <Col sm={12}>
+                                                <Body1>Selecciona el medio de contacto</Body1>
+                                            </Col>
+                                            <Col className='d-flex justify-content-center mb-2 mt-2' sm={12} md={5}>
+                                                <ButtonOutlined className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: '#25D366' }} className='fab m-2 fa-lg fa-whatsapp'></i>} />
+                                                <ButtonOutlined className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: 'black' }} className='fas m-2 fa-lg fa-mobile'></i>} />
+                                                <ButtonOutlined className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: '#32C8f4' }} className='fas m-2 fa-lg fa-phone'></i>} />
+                                                <ButtonOutlined className='pt-0 pb-0 mr-1 ml-1 mt-2' value={<i style={{ color: 'black' }} className='fas m-2 fa-lg fa-envelope'></i>} />
+                                            </Col>
+                                            <Col sm={12} md={7}>
+                                                {contacto.type && contacto.type === 'envelope' ?
+                                                <InputField disabled={contacto.lock} type='email' value={contacto.content} placeholder='Direccion de correo electronico' disabled />
+                                                :
+                                                <InputField disabled={contacto.lock} type='phone' value={contacto.content} placeholder='Numero de telefono' disabled />
+                                                }
+                                            </Col>
+                                        </Row>
                                     </ListItem>
                                     <ListItem>
                                         <ButtonOutlined className='mt-2 pt-0 pb-0' value='Agregar otro' />
                                     </ListItem>
                                 </List>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col>
-                    <H4Styled style={{ marginBottom: '.75rem' }}>
-                        Información de contacto
-                    </H4Styled>
-                    <Row>
-                        <Col xl={10}>
-                            <div className='card' style={{ boxShadow: '0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12)' }}>
-                                <div className='card-body'>
-                                    <List>
-                                        <ListItem>
-                                            <Row>
-                                                <Col sm='12'>
-                                                    <Subtitle1>Selecciona el medio de contacto</Subtitle1>
-                                                </Col>
-                                                <Col className='d-flex justify-content-center mb-2 mt-1' sm={12} md={5}>
-                                                    <ToggleButtonGroup type="radio" name="options" value={contacto.type}>
-                                                        <ToggleButton className='btn-sm border-0 mr-4 mt-3' value='whatsapp' style={{ backgroundColor: contacto.type === 'whatsapp' ? '#25d366' :  'transparent', cursor: 'pointer' }}>
-                                                            <i style={{ color:  contacto.type === 'whatsapp' ? '#FFF' :  '#25D366' }} className='fab m-2 fa-lg fa-whatsapp'></i>
-                                                        </ToggleButton>
-                                                        <ToggleButton className='btn-sm border-0 mr-4 mt-3' value='mobile' style={{ backgroundColor: contacto.type === 'mobile' ? '#d0d0d0' :  'transparent', cursor: 'pointer' }}>
-                                                            <i style={{ color: 'black' }} className='fas m-2 fa-lg fa-mobile'></i>
-                                                        </ToggleButton>
-                                                        <ToggleButton className='btn-sm border-0 mr-4 mt-3' value='phone' style={{ backgroundColor: contacto.type === 'phone' ? '#d0d0d0' :  'transparent', cursor: 'pointer' }}>
-                                                            <i style={{ color: '#32C8f4' }} className='fas m-2 fa-lg fa-phone'></i>
-                                                        </ToggleButton>
-                                                        <ToggleButton className='btn-sm border-0 mr-4 mt-3' value='envelope' style={{ backgroundColor: contacto.type === 'envelope' ? '#d0d0d0' :  'transparent', cursor: 'pointer' }}>
-                                                            <i style={{ color: 'black' }} className='fas m-2 fa-lg fa-envelope'></i>
-                                                        </ToggleButton>
-                                                    </ToggleButtonGroup>
-                                                </Col>
-                                                <Col sm={12} md={7}>
-                                                    {contacto.type && contacto.type === 'envelope' ?
-                                                    <InputField disabled={contacto.lock} type='email' value={contacto.content} placeholder='Direccion de correo electronico' />
-                                                    :
-                                                    <InputField disabled={contacto.lock} type='phone' value={contacto.content} placeholder='Numero de telefono' />
-                                                    }
-                                                </Col>
-                                            </Row>
-                                        </ListItem>
-                                        <ListItem>
-                                            <ButtonOutlined className='mt-2 pt-0 pb-0' value='Agregar otro' />
-                                        </ListItem>
-                                    </List>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
+                            </Col>
+                        </Row>
                     </Col>
                     <Col xl={12} className='mt-4 d-flex justify-content-end mb-3'>
-                        <ButtonRaised value='Registrarme!' type='submit' />
+                        <ButtonRaised value='Publicar a mi mascota!' type='submit' />
                     </Col>
                 </form>
             </div>
