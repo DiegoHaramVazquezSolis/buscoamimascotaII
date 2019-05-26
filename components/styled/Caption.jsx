@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-const Caption = ({ children, style }) => {
+const Caption = ({ children, style, className }) => {
     return (
         <>
-            <small style={style ? style : null}>{children}</small>
+            <small className={className ? className : ''} style={style ? style : null}>{children}</small>
             <style jsx>{`
                 small {
                     font-family: 'Montserrat', sans-serif;
@@ -18,7 +18,8 @@ const Caption = ({ children, style }) => {
 
 Caption.propTypes = {
     children: PropTypes.string.isRequired,
-    style: PropTypes.object
+    style: PropTypes.object,
+    className: PropTypes.string
 };
 
 export default Caption;

@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-const TextForButtons = ({ children, style }) => {
+const TextForButtons = ({ children, style, className }) => {
     return (
         <>
-            <p style={style ? style : null}>{children}</p>
+            <p className={className ? className : ''} style={style ? style : null}>{children}</p>
             <style jsx>{`
                 p {
                     padding-top: 8px;
@@ -24,7 +24,8 @@ const TextForButtons = ({ children, style }) => {
 
 TextForButtons.propTypes = {
     children: PropTypes.string.isRequired,
-    style: PropTypes.object
+    style: PropTypes.object,
+    className: PropTypes.string
 };
 
 

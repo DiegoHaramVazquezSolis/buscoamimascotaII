@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-const Body2 = ({ children, style }) => {
+const Body2 = ({ children, style, className }) => {
     return (
         <>
-            <p style={style ? style : null}>{children}</p>
+            <p className={className ? className : ''} style={style ? style : null}>{children}</p>
             <style jsx>{`
                 p {
                     font-family: 'Montserrat', sans-serif;
@@ -19,7 +19,8 @@ const Body2 = ({ children, style }) => {
 
 Body2.propTypes = {
     children: PropTypes.string.isRequired,
-    style: PropTypes.object
+    style: PropTypes.object,
+    className: PropTypes.string
 };
 
 

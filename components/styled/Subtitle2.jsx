@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-const Subtitle2 = ({ children, style }) => {
+const Subtitle2 = ({ children, style, className }) => {
     return (
         <>
-            <p style={style ? style : null}>{children}</p>
+            <p className={className ? className : ''} style={style ? style : null}>{children}</p>
             <style jsx>{`
                 p {
                     font-family: 'Open Sans', sans-serif;
@@ -19,7 +19,8 @@ const Subtitle2 = ({ children, style }) => {
 
 Subtitle2.propTypes = {
     children: PropTypes.string.isRequired,
-    styles: PropTypes.object
+    styles: PropTypes.object,
+    className: PropTypes.string
 };
 
 

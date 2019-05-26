@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-const Overline = ({ children, style }) => {
+const Overline = ({ children, style, className }) => {
     return (
         <>
-            <small style={style ? style : null}>{children}</small>
+            <small className={className ? className : ''} style={style ? style : null}>{children}</small>
             <style jsx>{`
                 small {
                     font-family: 'Montserrat', sans-serif;
@@ -20,7 +20,8 @@ const Overline = ({ children, style }) => {
 
 Overline.propTypes = {
     children: PropTypes.string.isRequired,
-    style: PropTypes.object
+    style: PropTypes.object,
+    className: PropTypes.string
 };
 
 export default Overline;

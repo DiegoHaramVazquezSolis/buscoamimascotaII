@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-const H6Styled = ({ children, style }) => {
+const H6Styled = ({ children, style, className }) => {
     return (
         <>
-            <h6 style={style ? style : null}>{children}</h6>
+            <h6 className={className ? className : ''} style={style ? style : null}>{children}</h6>
             <style jsx>{`
                 h6 {
                     font-family: 'Open Sans', sans-serif;
@@ -19,7 +19,8 @@ const H6Styled = ({ children, style }) => {
 
 H6Styled.propTypes = {
     children: PropTypes.string.isRequired,
-    style: PropTypes.object
+    style: PropTypes.object,
+    className: PropTypes.string
 };
 
 

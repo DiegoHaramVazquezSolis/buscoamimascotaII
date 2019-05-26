@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-const H3Styled = ({ children, style }) => {
+const H3Styled = ({ children, style, className }) => {
     return (
         <>
-            <h3 style={style ? style : null}>{children}</h3>
+            <h3 className={className ? className : ''} style={style ? style : null}>{children}</h3>
             <style jsx>{`
                 h3 {
                     font-family: 'Montserrat', sans-serif;
@@ -19,7 +19,8 @@ const H3Styled = ({ children, style }) => {
 
 H3Styled.propTypes = {
     children: PropTypes.string.isRequired,
-    style: PropTypes.object
+    style: PropTypes.object,
+    className: PropTypes.string
 };
 
 

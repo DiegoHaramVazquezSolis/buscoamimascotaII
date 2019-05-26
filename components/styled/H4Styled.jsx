@@ -20,7 +20,8 @@ const H4Styled = ({ children, style, className }) => {
 
 H4Styled.propTypes = {
     children: PropTypes.string.isRequired,
-    style: PropTypes.object
+    style: PropTypes.object,
+    className: PropTypes.string
 };
 
 
