@@ -5,7 +5,7 @@ import { primaryColor, primaryVariantColorRGB } from '../../styled/Constants';
 const RadioButtonField = ({ name, label, checked, onChange, className, required }) => {
     return (
         <>
-        <label className={`container ${className}`}>
+        <label className={`container ${className ? className : ''}`}>
             <Subtitle1>{label}</Subtitle1>
             <input
                 type='radio'

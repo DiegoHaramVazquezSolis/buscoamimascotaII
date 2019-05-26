@@ -1,21 +1,24 @@
 import PropTypes from 'prop-types';
-import Caption from '../../styled/Caption';
 import { primaryColorRGB } from '../../styled/Constants';
+import Body1 from '../../styled/Body1';
 
 const TextAreaField = ({ name, label, className, placeholder, onChange, value, disabled, rows }) => {
     return (
         <>
-            <label htmlFor={name}><Caption>{label}</Caption></label>
+            <label htmlFor={name}><Body1>{label}</Body1></label>
             <textarea
                 id={name}
                 name={name}
-                className={`form-control ${className}`}
+                className={`form-control ${className ? className : ''}`}
                 placeholder={placeholder}
                 onChange={onChange}
                 value={value}
                 disabled={disabled}
                 rows={rows} />
             <style jsx>{`
+                label {
+                    margin: 0;
+                }
                 textarea {
                     //Subtitle1
                     font-family: 'Open Sans', sans-serif;

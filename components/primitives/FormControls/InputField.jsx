@@ -1,28 +1,31 @@
 import PropTypes from 'prop-types';
-import Caption from '../../styled/Caption';
 import { primaryColorRGB } from '../../styled/Constants';
+import Body1 from '../../styled/Body1';
 
-const InputField = ({ name, label, placeholder, disabled, type, className, value, onChange }) => {
+const InputField = ({ name, label, placeholder, disabled, type, className, required, value, onChange }) => {
     return (
         <>
-            <label htmlFor={name}><Caption>{label}</Caption></label>
+            <label htmlFor={name}><Body1>{label}</Body1></label>
             <input
                 id={name}
                 name={name}
-                className={`primary form-control ${className}`}
+                className={`primary form-control ${className ? className : ''}`}
                 type={type}
                 placeholder={placeholder}
                 onChange={onChange}
                 value={value}
-                disabled={disabled} />
+                disabled={disabled}
+                required={required} />
             <style jsx>{`
+                label {
+                    margin: 0;
+                }
                 .primary {
                     //Subtitle1
                     font-family: 'Open Sans', sans-serif;
                     font-size: 16px;
                     line-height: 24px;
                     letter-spacing: 0.15px;
-                    background: transparent;
                     border: 1.5px solid #CED4DA;
                 }
                 .primary:focus {
@@ -36,7 +39,7 @@ const InputField = ({ name, label, placeholder, disabled, type, className, value
 
 InputField.defaultProps = {
     disabled: false,
-    error: false,
+    required: true,
     type: 'text'
 }
 
@@ -49,11 +52,13 @@ InputField.propTypes = {
         'password',
         'date',
         'email',
-        'tel'
+        'tel',
+        'time'
     ]),
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string.isRequired
+    placeholder: PropTypes.string.isRequired,
+    required: PropTypes.bool
 };
 
 export default InputField;

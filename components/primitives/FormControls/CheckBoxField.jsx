@@ -5,7 +5,7 @@ import { primaryVariantColorRGB, primaryColor } from '../../styled/Constants';
 const CheckBoxField = ({ name, label, checked, onChange, className, required }) => {
     return (
         <>
-        <label className={`container ${className}`}>
+        <label className={`container ${className ? className : ''}`}>
             <Subtitle1>{label}</Subtitle1>
             <input
                 type='checkbox'

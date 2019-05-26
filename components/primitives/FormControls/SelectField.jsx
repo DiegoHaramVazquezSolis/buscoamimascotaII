@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import Caption from '../../styled/Caption';
 import { primaryColorRGB } from '../../styled/Constants';
+import Body1 from '../../styled/Body1';
 
 const SelectField = ({ name, label, className, onChange, value, disabled, children }) => {
     return (
         <>
-            <label htmlFor={name}><Caption>{label}</Caption></label>
+            <label htmlFor={name}><Body1>{label}</Body1></label>
             <select
                 id={name}
                 name={name}
@@ -17,6 +17,9 @@ const SelectField = ({ name, label, className, onChange, value, disabled, childr
                     {children}
                 </select>
             <style jsx>{`
+                label {
+                    margin: 0;
+                }
                 select {
                     //Subtitle1
                     font-family: 'Open Sans', sans-serif;
