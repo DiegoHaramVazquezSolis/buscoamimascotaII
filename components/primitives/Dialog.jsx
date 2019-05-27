@@ -78,9 +78,9 @@ class Dialog extends React.Component {
                         justify-content: center;
                     }
                     .dialog {
-                        max-width: 600px;
+                        max-width: 1200px;
+                        width: 100%;
                         flex: 0 1 auto;
-                        max-height: calc(100% - 96px);
                         margin: 48px;
                         display: flex;
                         position: relative;
