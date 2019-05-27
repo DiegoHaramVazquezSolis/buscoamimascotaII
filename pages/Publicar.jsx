@@ -117,34 +117,6 @@ const Publicar = () => {
                                 removeImages={removeImages} />
                         </section>
                     </Col>
-                    <Col sm={12} md={6} className='mt-3'>
-                        <Body1>Señas particulares</Body1>
-                        <Body2 style={{ color: '#828282' }}>
-                            Manchas, color de pelo, color de ojos, etc.
-                        </Body2>
-                        <List>
-                            <ListItem>
-                                <InputField placeholder='Tiene una mancha negra en el ojo' required={false}/>
-                            </ListItem>
-                            <ListItem>
-                                <ButtonOutlined className='mt-2 pt-0 pb-0' value='Agregar otra' />
-                            </ListItem>
-                        </List>
-                    </Col>
-                    <Col sm={12} md={6} className='mt-3'>
-                        <Body1>Cuidados especiales</Body1>
-                        <Body2 style={{ color: '#828282' }}>
-                            Medicamentos, tratamientos, carácter (ej: Violento, timido), etc.
-                        </Body2>
-                        <List>
-                            <ListItem>
-                                <InputField placeholder='Puede morder cuando esta asustado' required={false}/>
-                            </ListItem>
-                            <ListItem>
-                                <ButtonOutlined className='mt-2 pt-0 pb-0' value='Agregar otro' />
-                            </ListItem>
-                        </List>
-                    </Col>
                     <Col xl={12} className='mt-4'>
                         <SubtitlePublicar>
                             Información sobre la desaparición
@@ -194,7 +166,7 @@ const Publicar = () => {
                     <Col xl={6} className='mt-5 mb-3'>
                         <CheckBoxField
                             name='haveId'
-                            label='Tenia placa de identificación' />
+                            label='Tiene placa de identificación' />
                     </Col>
                     <Col xl={12}>
                         <SubtitlePublicar>
