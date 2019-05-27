@@ -20,7 +20,7 @@ const Map = ({ label, instructions, draggable, onMarkerClick, onPointSelected })
         height: '50vh',
         latitude: 20.6870673,
         longitude: -103.3526815,
-        zoom: 13,
+        zoom: 15,
         bearing: 0,
         pitch: 0
     });
@@ -39,8 +39,8 @@ const Map = ({ label, instructions, draggable, onMarkerClick, onPointSelected })
         .then((response) => {
             var cp = '', place = '';
             response.data.features.forEach(feature => {
-                if (feature.id.indexOf('postcode') !== -1){ cp = feature.text; console.log(feature) }
-                else if (feature.id.indexOf('place') !== -1){ place = feature.place_name; console.log(feature) }
+                if (feature.id.indexOf('postcode') !== -1) cp = feature.text;
+                else if (feature.id.indexOf('place') !== -1) place = feature.place_name;
             });
             onPointSelected(cp, place);
         });
