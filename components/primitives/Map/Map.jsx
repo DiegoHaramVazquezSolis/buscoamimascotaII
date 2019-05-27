@@ -30,11 +30,11 @@ const Map = ({ label, instructions, draggable, onMarkerClick, onPointSelected })
     });
     
     function onMarkerDragEnd(event) {
-        changeMarker(event.lngLat[1], event.lngLat[0])
+        changeMarker(event.lngLat[1], event.lngLat[0]);
     };
 
     function changeMarker(latitude, longitude){
-        setMarker({ latitude: latitude, longitude: longitude })
+        setMarker({ latitude: latitude, longitude: longitude });
         axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude}%2C%20${latitude}.json?access_token=${MAPBOX_TOKEN}`)
         .then((response) => {
             var cp = '', place = '';
@@ -61,11 +61,13 @@ const Map = ({ label, instructions, draggable, onMarkerClick, onPointSelected })
                 mapboxApiAccessToken={MAPBOX_TOKEN}
                 onViewportChange={(viewport) => setViewPort(viewport)}
                 {...viewport}>
-                    <GeolocateControl
-                    style={geolocateStyle}
-                    onViewportChange={onViewportChange}
-                    positionOptions={{enableHighAccuracy: true}}
-                    trackUserLocation={false} />
+                    {draggable &&
+                        <GeolocateControl
+                        style={geolocateStyle}
+                        onViewportChange={onViewportChange}
+                        positionOptions={{enableHighAccuracy: true}}
+                        trackUserLocation={false} />
+                    }
                     <Marker 
                         longitude={marker.longitude}
                         latitude={marker.latitude}
