@@ -20,6 +20,8 @@ import Body2 from '../components/styled/Body2';
 import ButtonText from '../components/primitives/Buttons/ButtonText';
 import { primaryColorRGB } from '../components/styled/Constants';
 import Map from '../components/primitives/Map/Map';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const SubtitlePublicar = ({ children }) => (
     <>
@@ -37,6 +39,7 @@ const SubtitlePublicar = ({ children }) => (
 const Publicar = () => {
     const [files, setFiles] = useState([]);
     const [contacto, setContacto] = useState({ type: 'whatsapp'});
+    const [location, setLocation] = useState({ cp: '44200', place: 'Guadalajara, Jalisco, Mexico'});
 
     const {getRootProps, getInputProps} = useDropzone({
         multiple: false,
@@ -148,12 +151,38 @@ const Publicar = () => {
                         </SubtitlePublicar>
                     </Col>
                     <Col xl={12} className='mt-2'>
-                        <Body2 style={{ color: '#828282' }}>
-                            Arrastra el marcador <i style={{ color: '#D00' }} className="fas fa-map-marker"></i> para determinar la ubicación.
-                            <br/>
-                            Presiona <img src='/static/media/baseline-gps_fixed-24px.svg' /> para colocar el marcador en tu ubicación actual.
-                        </Body2>
-                        <Map />
+                        <Map
+                            label={
+                                <>
+                                    Lugar de desaparición
+                                    <OverlayTrigger
+                                        key={'placement'}
+                                        placement={'bottom'}
+                                        overlay={
+                                            <Tooltip id={`tooltip`}>
+                                                <Body2>
+                                                    La ubicación sirve para notificar a los usuarios que esten 5km a la redonda.
+                                                </Body2>
+                                            </Tooltip>
+                                        }>
+                                        <i className='far fa-question-circle fa-lg ml-1'></i>
+                                    </OverlayTrigger>
+                                    <br/>
+                                    <Body2 style={{ color: '#828282' }}>
+                                        Lugar: {location.place}
+                                        <br/>
+                                        Codigo Postal: {location.cp}
+                                    </Body2>
+                                </>
+                            }
+                            instructions={
+                                <>
+                                    Arrastra el marcador <i style={{ color: '#D00' }} className='fas fa-map-marker fa-lg'></i> para determinar la ubicación.
+                                    <br/>
+                                    Presiona <img src='/static/media/baseline-gps_fixed-24px.svg' /> para colocar el marcador en tu ubicación actual.
+                                </>
+                            }
+                            onPointSelected={(cp, place) => setLocation({ cp, place })}/>
                     </Col>
                     <Col xl={6} className='mt-2'>
                         <InputField
