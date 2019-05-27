@@ -40,9 +40,11 @@ class Dialog extends React.Component {
                     <div className='overlay' style={{ opacity: open ? 1 : 0, transition: 'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms' }}></div>
                     <div className='dialogContainer' style={{ opacity: open ? 1 : 0, transition: 'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms' }}>
                         <div className='dialog' ref={this.setWrapperRef}>
-                            <div className='dialogTitle'>
-                                <H5Styled>{title}</H5Styled>
-                            </div>
+                            {title &&
+                                <div className='dialogTitle'>
+                                    <H5Styled>{title}</H5Styled>
+                                </div>
+                            }
                             <div className='dialogBody'>
                                 {children}
                             </div>
@@ -80,6 +82,7 @@ class Dialog extends React.Component {
                     .dialog {
                         max-width: 1200px;
                         width: 100%;
+                        height: calc(100% - 90px);
                         flex: 0 1 auto;
                         margin: 48px;
                         display: flex;
