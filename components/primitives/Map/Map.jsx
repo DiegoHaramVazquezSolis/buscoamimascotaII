@@ -14,19 +14,19 @@ const geolocateStyle = {
     margin: 10
 };
 
-const Map = ({ label, instructions, draggable, onMarkerClick, onPointSelected }) => {
+const Map = ({ label, instructions, draggable, onMarkerClick, onPointSelected, initialPosition }) => {
     const [viewport, setViewPort] = useState({
         width: '100%',
-        height: '50vh',
-        latitude: 20.6870673,
-        longitude: -103.3526815,
+        height: '25vh',
+        latitude: initialPosition ? initialPosition.latitude : 20.6870673,
+        longitude: initialPosition ? initialPosition.longitude : -103.3526815,
         zoom: 15,
         bearing: 0,
         pitch: 0
     });
     const [marker, setMarker] = useState({
-        latitude: 20.6870673,
-        longitude: -103.3526815,
+        latitude: initialPosition ? initialPosition.latitude : 20.6870673,
+        longitude: initialPosition ? initialPosition.longitude : -103.3526815,
     });
     
     function onMarkerDragEnd(event) {
@@ -94,7 +94,11 @@ Map.propTypes = {
     instructions: PropTypes.element,
     onMarkerClick: PropTypes.func,
     onPointSelected: PropTypes.func.isRequired,
-    draggable: PropTypes.bool
+    draggable: PropTypes.bool,
+    initialPosition: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired
+    })
 };
 
 export default Map;
