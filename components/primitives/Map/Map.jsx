@@ -14,7 +14,7 @@ const geolocateStyle = {
     margin: 10
 };
 
-const Map = ({ label, instructions, onMarkerClick, onPointSelected }) => {
+const Map = ({ label, instructions, draggable, onMarkerClick, onPointSelected }) => {
     const [viewport, setViewPort] = useState({
         width: '100%',
         height: '50vh',
@@ -57,7 +57,7 @@ const Map = ({ label, instructions, onMarkerClick, onPointSelected }) => {
             <ReactMapGL
                 width='100%'
                 height='100%'
-                mapStyle='mapbox://styles/mapbox/light-v9'
+                mapStyle='mapbox://styles/mapbox/streets-v9'
                 mapboxApiAccessToken={MAPBOX_TOKEN}
                 onViewportChange={(viewport) => setViewPort(viewport)}
                 {...viewport}>
@@ -71,9 +71,9 @@ const Map = ({ label, instructions, onMarkerClick, onPointSelected }) => {
                         latitude={marker.latitude}
                         offsetTop={-20}
                         offsetLeft={-10}
-                        draggable
+                        draggable={draggable}
                         onDragEnd={onMarkerDragEnd}>
-                        <i onClick={onMarkerClick} style={{ color: '#D00' }} className="fas fa-map-marker fa-lg"></i>
+                        <i onClick={onMarkerClick} style={{ color: '#D00' }} className='fas fa-map-marker fa-lg'></i>
                     </Marker>
             </ReactMapGL>
             <Body2 style={{ color: '#828282' }}>
@@ -83,11 +83,16 @@ const Map = ({ label, instructions, onMarkerClick, onPointSelected }) => {
     );
 }
 
+Map.defaultProps = {
+    draggable: true
+};
+
 Map.propTypes = {
     label: PropTypes.string.isRequired,
     instructions: PropTypes.element,
     onMarkerClick: PropTypes.func,
-    onPointSelected: PropTypes.func.isRequired
+    onPointSelected: PropTypes.func.isRequired,
+    draggable: PropTypes.bool
 };
 
 export default Map;
