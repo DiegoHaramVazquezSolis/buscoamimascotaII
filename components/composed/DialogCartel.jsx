@@ -44,8 +44,8 @@ const DialogCartel = ({ name, date, specie, sex, place, description, haveId, con
                                 {place}
                             </Subtitle1>
                             <div className='d-flex justify-content-center'>
-                                <ButtonOutlined value='Compartir' className='mr-2' onClick={() => setShareDialogOpen(true)} />
-                                <ButtonRaised value='Contactar' onClick={() => setContactDialogOpen(true)} />
+                                <ButtonOutlined value='Compartir' className='mr-2' onClick={() => {setShareDialogOpen(true); setContactDialogOpen(false);}} />
+                                <ButtonRaised value='Contactar' onClick={() => {setShareDialogOpen(false); setContactDialogOpen(true);}} />
                             </div>
                             <div className='contactList mt-2'>
                                 <H5Styled>Contacto</H5Styled>
