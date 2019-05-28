@@ -36,7 +36,7 @@ const Signin = () => {
                         <InputField label='Verificar contraseña' type='email' placeholder='Verificar' />
                     </div>
                     <div className='col-12 mt-4 d-flex justify-content-end mb-3'>
-                        <ButtonOutlined value='Borrar' type='reset' style={{ marginRight: '1rem' }} />
+                        <ButtonOutlined value='Borrar' type='reset' className='mr-2' />
                         <ButtonRaised value='Registrarme!' type='submit' />
                     </div>
                 </form>
