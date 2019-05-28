@@ -15,11 +15,16 @@ import H5Styled from '../styled/H5Styled';
 const DialogCartel = ({ name, date, specie, sex, place, description, haveId, contact, open, closeDialog }) => {
     const [contactDialogOpen, setContactDialogOpen] = useState(false);
     const [shareDialogOpen, setShareDialogOpen] = useState(false);
+    if (open) {
+        history.pushState(null, '', `/mascotaperdida/${name}`);
+    }
     return(
         <>
+            {open &&
             <Head>
                 <title>{name}</title>
             </Head>
+            }
             <Dialog open={open} closeDialog={closeDialog}>
                 <div className='container mt-4'>
                     <div className='row'>
