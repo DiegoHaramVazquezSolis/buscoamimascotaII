@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import H5Styled from '../styled/H5Styled';
+import { primaryColor } from '../styled/Constants';
 
 class Dialog extends React.Component {
     constructor(props) {
@@ -15,12 +16,12 @@ class Dialog extends React.Component {
     
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
-        document.addEventListener("keydown", this.escFunction);
+        document.addEventListener('keydown', this.escFunction);
     }
     
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClickOutside);
-        document.removeEventListener("keydown", this.escFunction);
+        document.removeEventListener('keydown', this.escFunction);
     }
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
@@ -45,7 +46,10 @@ class Dialog extends React.Component {
                                     <H5Styled>{title}</H5Styled>
                                 </div>
                             }
-                            <div className='dialogBody'>
+                            <div className='col-12 position-fixed pb-2' style={{ zIndex: 1, width: 'auto', color: primaryColor }}>
+                                <i className='fas fa-arrow-left mt-3 fa-2x' style={{ cursor: 'pointer' }} onClick={() => this.props.closeDialog()}></i>
+                            </div>
+                            <div className='dialogBody mt-3'>
                                 {children}
                             </div>
                         </div>
