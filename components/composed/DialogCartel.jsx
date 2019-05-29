@@ -9,15 +9,20 @@ import H4Styled from '../styled/H4Styled';
 import Map from '../primitives/Map/Map';
 import CheckBoxField from '../primitives/FormControls/CheckBoxField';
 import ButtonOutlined from '../primitives/Buttons/ButtonOutlined';
-import List from '../primitives/List/List';
 import ListItemText from '../primitives/List/ListItemText';
 import H5Styled from '../styled/H5Styled';
+import ButtonText from '../primitives/Buttons/ButtonText';
 
 const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId, contact, image, open, closeDialog }) => {
     const [contactDialogOpen, setContactDialogOpen] = useState(false);
     const [shareDialogOpen, setShareDialogOpen] = useState(false);
     if (open) {
         history.pushState(null, '', `/mascotaperdida/${id}`);
+    }
+    function onCloseDialog() {
+        setContactDialogOpen(false);
+        setShareDialogOpen(false);
+        closeDialog();
     }
     return(
         <>
@@ -26,7 +31,7 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                 <title>{name}</title>
             </Head>
             }
-            <Dialog open={open} closeDialog={closeDialog}>
+            <Dialog open={open} closeDialog={onCloseDialog}>
                 <div className='container mt-4'>
                     <div className='row'>
                         <div className='col-sm-12 col-md-4'></div>
@@ -53,31 +58,6 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                                 <ButtonOutlined value='Compartir' className='mr-2' onClick={() => {setShareDialogOpen(true); setContactDialogOpen(false);}} />
                                 <ButtonRaised value='Contactar' onClick={() => {setShareDialogOpen(false); setContactDialogOpen(true);}} />
                             </div>
-                            <div className='contactList mt-2'>
-                                <H5Styled>Contacto</H5Styled>
-                                <List>
-                                    {Object.keys(contact).map((contactKey) => {
-                                        switch (contact[contactKey].type) {
-                                            case 'whatsapp':
-                                                return (<ListItemText iconFaCode='fab m-2 fa-lg fa-whatsapp' iconColor='#25D366' content={contact[contactKey].value} />);
-                                            case 'mobile':
-                                                return (<ListItemText iconFaCode='fas m-2 fa-lg fa-mobile' iconColor='black' content={contact[contactKey].value} />);
-                                            case 'phone':
-                                                return (<ListItemText iconFaCode='fas m-2 fa-lg fa-phone' iconColor='#32C8f4' content={contact[contactKey].value} />);
-                                            case 'envelope':
-                                                return (<ListItemText iconFaCode='fas m-2 fa-lg fa-envelope' iconColor='black' content={contact[contactKey].value} />);
-                                            default:
-                                                break;
-                                        }
-                                    })}
-                                </List>
-                            </div>
-                            <div className='shareList mt-2'>
-                                <H5Styled>Compartir</H5Styled>
-                                <List>
-                                    {/*Todo: Social media links to share*/}
-                                </List>
-                            </div>
                         </div>
                         <div className='col-sm-12 col-md-8'>
                             <Subtitle1 style={{ color: '#4F4F4F' }}>
@@ -86,6 +66,51 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                             <CheckBoxField className='mt-2 mb-0' disabled checked={haveId} label='Tiene placa de identificación' />
                             <div className='ml-2'>
                                 <Map label='Zona de la desaparición' draggable={false} initialPosition={{ latitude: 20.721870, longitude: -103.293555 }} />
+                            </div>
+                            <div className='contactList mt-2'>
+                                <H5Styled>Contacto</H5Styled>
+                                {Object.keys(contact).map((contactKey) => {
+                                    switch (contact[contactKey].type) {
+                                        case 'whatsapp':
+                                            return (
+                                                <ButtonText
+                                                    className='pt-0 pb-0'
+                                                    value={<i className='fab m-2 fa-lg fa-whatsapp' style={{ color: '#25D366' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                            );
+                                        case 'mobile':
+                                            return (
+                                                <ButtonText
+                                                    className='pt-0 pb-0'
+                                                    value={<i className='fab m-2 fa-lg fa-mobile' style={{ color: 'black' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                            );
+                                        case 'phone':
+                                            return (
+                                                <ButtonText
+                                                    className='pt-0 pb-0'
+                                                    value={<i className='fab m-2 fa-lg fa-phone' style={{ color: '#32C8f4' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                            );
+                                        case 'envelope':
+                                            return (
+                                                <ButtonText
+                                                    className='pt-0 pb-0'
+                                                    value={<i className='fab m-2 fa-lg fa-envelope' style={{ color: 'black' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                            );
+                                        default:
+                                            break;
+                                    }
+                                })}
+                            </div>
+                            <div className='shareList mt-2'>
+                                <H5Styled>Compartir</H5Styled>
+                                    <ButtonText
+                                        className='pt-0 pb-0'
+                                        value={<i className='fab m-2 fa-lg fa-whatsapp' style={{ color: '#25D366' }}></i>} />
+                                    <ButtonText
+                                        className='pt-0 pb-0'
+                                        value={<i className='fab m-2 fa-lg fa-facebook-f' style={{ color: '#3B5998' }}></i>} />
+                                    <ButtonText
+                                        className='pt-0 pb-0'
+                                        value={<i className='fab m-2 fa-lg fa-facebook-messenger' style={{ color: '#2196F3' }}></i>} />
                             </div>
                         </div>
                     </div>
@@ -98,12 +123,10 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                 .contactList {
                     max-height: ${contactDialogOpen ? '100%' : '0'};
                     overflow: hidden;
-                    transition: max-height 600ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
                 }
                 .shareList {
                     max-height: ${shareDialogOpen ? '100%' : '0'};
                     overflow: hidden;
-                    transition: max-height 600ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
                 }
             `}</style>
         </>
