@@ -4,7 +4,7 @@ import Caption from '../../styled/Caption';
 const CardBody = ({ children }) => {
     return (
         <>
-            <Caption style={{ marginLeft: '.75rem', marginRight: '1.25rem', marginBottom: '1.5rem'}}>{children}</Caption>
+            <Caption style={{ marginLeft: '.75rem', marginRight: '1.25rem', marginBottom: '1.5rem', height: '64px'}}>{children}</Caption>
         </>
     );
 }
