@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Head from 'next/head';
 import Dialog from '../primitives/Dialog';
@@ -12,11 +13,11 @@ import List from '../primitives/List/List';
 import ListItemText from '../primitives/List/ListItemText';
 import H5Styled from '../styled/H5Styled';
 
-const DialogCartel = ({ name, date, specie, sex, place, description, haveId, contact, open, closeDialog }) => {
+const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId, contact, image, open, closeDialog }) => {
     const [contactDialogOpen, setContactDialogOpen] = useState(false);
     const [shareDialogOpen, setShareDialogOpen] = useState(false);
     if (open) {
-        history.pushState(null, '', `/mascotaperdida/${name}`);
+        history.pushState(null, '', `/mascotaperdida/${id}`);
     }
     return(
         <>
@@ -36,7 +37,7 @@ const DialogCartel = ({ name, date, specie, sex, place, description, haveId, con
                             <div
                                 className='mb-3 rounded'
                                 style={{ 
-                                    background: 'url(https://images.unsplash.com/photo-1490042706304-06c664f6fd9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80)',
+                                    background: `url(${image})`,
                                     backgroundColor: '#C4C4C4',
                                     width: '100%',
                                     height: '250px',
@@ -108,5 +109,23 @@ const DialogCartel = ({ name, date, specie, sex, place, description, haveId, con
         </>
     );
 }
+
+DialogCartel.propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    specie: PropTypes.string.isRequired,
+    place: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    haveId: PropTypes.bool.isRequired,
+    contact: PropTypes.shape({
+        identifier: {
+            type: PropTypes.string.isRequired,
+            value: PropTypes.string.isRequired
+        }
+    }).isRequired,
+    image: PropTypes.string.isRequired,
+    closeDialog: PropTypes.func.isRequired
+};
 
 export default DialogCartel;
