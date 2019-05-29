@@ -55,6 +55,11 @@ class Dialog extends React.Component {
                         </div>
                     </div>
                 </div>
+                <style jsx global>{`
+                    html {
+                        overflow: ${open ? 'hidden' : ''};
+                    }
+                `}</style>
                 <style jsx>{`
                     .title {
                         top: 0;
