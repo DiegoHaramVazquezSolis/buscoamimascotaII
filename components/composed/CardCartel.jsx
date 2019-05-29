@@ -12,21 +12,21 @@ import ButtonRaised from '../primitives/Buttons/ButtonRaised';
 import Body2 from '../styled/Body2';
 import { primaryColor, primaryColorRGB } from '../styled/Constants';
 
-const CardCartel = ({ image, date, name, description, contact, id }) => {
+const CardCartel = ({ image, date, name, description, onVerMasClick, onContactarClick }) => {
     return (
         <Card>
             <CardImage src={image} />
             <CardHeader date={date} header={name} />
             <CardBody>
-                {description}
+                {description.length > 183 ? `${description.substring(0, 184)}...` : description}
             </CardBody>
             <div className='mb-3'>
                 <Row>
                     <Col xs={4} className='ml-4' style={{ padding: '0' }}>
-                        <ButtonText style={{ paddingLeft: '12px', paddingRight: '12px' }} textStyle={{ fontSize: '16px' }} className='btn-sm' value='Ver mas' />
+                        <ButtonText onClick={onVerMasClick} style={{ paddingLeft: '12px', paddingRight: '12px' }} textStyle={{ fontSize: '16px' }} className='btn-sm' value='Ver mas' />
                     </Col>
                     <Col xs={4} style={{padding: '0' }}>
-                        <ButtonRaised style={{ paddingLeft: '12px', paddingRight: '12px' }} textStyle={{ fontSize: '16px' }} className='btn-sm' value='Contactar' />
+                        <ButtonRaised onClick={onContactarClick} style={{ paddingLeft: '12px', paddingRight: '12px' }} textStyle={{ fontSize: '16px' }} className='btn-sm' value='Contactar' />
                     </Col>
                     <Col xs={2} className='ml-3'>
                         <OverlayTrigger
@@ -56,5 +56,14 @@ const CardCartel = ({ image, date, name, description, contact, id }) => {
         </Card>
     );
 }
+
+CardCartel.propTypes = {
+    image: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    onVerMasClick: PropTypes.func.isRequired,
+    onContactarClick: PropTypes.func.isRequired
+};
 
 export default CardCartel;
