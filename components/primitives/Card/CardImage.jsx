@@ -11,6 +11,7 @@ const CardImage = ({ src }) => {
                     height: 150px;
                     width: 100%;
                     border-radius: 4px 4px 0 0;
+                    background-color: rgb(196, 196, 196);
                 }
                 div:before {
                     margin-top: 56.25%;
