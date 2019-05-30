@@ -8,10 +8,8 @@ import ButtonRaised from '../primitives/Buttons/ButtonRaised';
 import H4Styled from '../styled/H4Styled';
 import Map from '../primitives/Map/Map';
 import CheckBoxField from '../primitives/FormControls/CheckBoxField';
-import ButtonOutlined from '../primitives/Buttons/ButtonOutlined';
-import ListItemText from '../primitives/List/ListItemText';
-import H5Styled from '../styled/H5Styled';
 import ButtonText from '../primitives/Buttons/ButtonText';
+import Body2 from '../styled/Body2';
 
 const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId, contact, image, open, closeDialog }) => {
     const [contactDialogOpen, setContactDialogOpen] = useState(false);
@@ -32,11 +30,23 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
             </Head>
             }
             <Dialog open={open} closeDialog={onCloseDialog}>
-                <div className='container mt-4'>
+                <div className='container mt-3'>
                     <div className='row'>
                         <div className='col-sm-12 col-md-4'></div>
                         <div className='col-sm-12 col-md-8'>
-                            <H4Styled>{name}</H4Styled>
+                            <H4Styled className='mb-0'>{name}</H4Styled>
+                            <div className='row'>
+                                <div className='col-sm-12 col-md-6'>
+                                    <Body2 style={{ color: '#828282' }}>
+                                        Especie: {specie} Sexo: {sex}
+                                    </Body2>
+                                </div>
+                                <div className='col-sm-12 col-md-6'>
+                                    <Body2 style={{ color: '#828282' }}>
+                                        {place}
+                                    </Body2>
+                                </div>
+                            </div>
                         </div>
                         <div className='col-sm-12 col-md-4 mb-4'>
                             <div
@@ -45,18 +55,65 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                                     background: `url(${image})`,
                                     backgroundColor: '#C4C4C4',
                                     width: '100%',
-                                    height: '250px',
+                                    height: '260px',
                                     backgroundSize: 'cover'
                                 }}></div>
                             <Body1 className='mb-2 text-center'>Visto por ultima vez el día: {date}</Body1>
-                            <Subtitle1 className='text-center' style={{ color: '#828282' }}>
-                                Especie: {specie}<br />
-                                Sexo: {sex}<br />
-                                {place}
-                            </Subtitle1>
-                            <div className='d-flex justify-content-center'>
-                                <ButtonOutlined value='Compartir' className='mr-2' onClick={() => {setShareDialogOpen(true); setContactDialogOpen(false);}} />
+                            <div className='d-flex justify-content-center mt-3 mb-3'>
                                 <ButtonRaised value='Contactar' onClick={() => {setShareDialogOpen(false); setContactDialogOpen(true);}} />
+                            </div>
+                            <div className='mt-3'>
+                                <div className='d-flex justify-content-center'>
+                                    <ButtonText
+                                        className='pt-0 pb-0'
+                                        value={<i className='fab m-2 fa-lg fa-whatsapp' style={{ color: '#25D366' }}></i>} />
+                                    <ButtonText
+                                        className='pt-0 pb-0 ml-3'
+                                        value={<i className='fab m-2 fa-lg fa-facebook-f' style={{ color: '#3B5998' }}></i>} />
+                                    <ButtonText
+                                        className='pt-0 pb-0 ml-3'
+                                        value={<i className='fab m-2 fa-lg fa-facebook-messenger' style={{ color: '#2196F3' }}></i>} />
+                                </div>
+                            </div>
+                            <div className='contactList row mt-1'>
+                                {Object.keys(contact).map((contactKey) => {
+                                    switch (contact[contactKey].type) {
+                                        case 'whatsapp':
+                                            return (
+                                                <div className='col-6'>
+                                                    <ButtonText
+                                                        className='pt-0 pb-0 pl-0 pr-0'
+                                                        value={<i className='fab m-2 fa-lg fa-whatsapp' style={{ color: '#25D366' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                                </div>
+                                            );
+                                        case 'mobile':
+                                            return (
+                                                <div className='col-6'>
+                                                    <ButtonText
+                                                        className='pt-0 pb-0 pl-0 pr-0'
+                                                        value={<i className='fab m-2 fa-lg fa-mobile' style={{ color: 'black' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                                </div>
+                                            );
+                                        case 'phone':
+                                            return (
+                                                <div className='col-6'>
+                                                    <ButtonText
+                                                        className='pt-0 pb-0 pl-0 pr-0'
+                                                        value={<i className='fab m-2 fa-lg fa-phone' style={{ color: '#32C8f4' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                                </div>
+                                            );
+                                        case 'envelope':
+                                            return (
+                                                <div className='col-6'>
+                                                    <ButtonText
+                                                        className='pt-0 pb-0 pl-0 pr-0'
+                                                        value={<i className='fab m-2 fa-lg fa-envelope' style={{ color: 'black' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                                </div>
+                                            );
+                                        default:
+                                            break;
+                                    }
+                                })}
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-8'>
@@ -66,51 +123,6 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                             <CheckBoxField className='mt-2 mb-0' disabled checked={haveId} label='Tiene placa de identificación' />
                             <div className='ml-2'>
                                 <Map label='Zona de la desaparición' draggable={false} initialPosition={{ latitude: 20.721870, longitude: -103.293555 }} />
-                            </div>
-                            <div className='contactList mt-2'>
-                                <H5Styled>Contacto</H5Styled>
-                                {Object.keys(contact).map((contactKey) => {
-                                    switch (contact[contactKey].type) {
-                                        case 'whatsapp':
-                                            return (
-                                                <ButtonText
-                                                    className='pt-0 pb-0'
-                                                    value={<i className='fab m-2 fa-lg fa-whatsapp' style={{ color: '#25D366' }}>{`  ${contact[contactKey].value}`}</i>} />
-                                            );
-                                        case 'mobile':
-                                            return (
-                                                <ButtonText
-                                                    className='pt-0 pb-0'
-                                                    value={<i className='fab m-2 fa-lg fa-mobile' style={{ color: 'black' }}>{`  ${contact[contactKey].value}`}</i>} />
-                                            );
-                                        case 'phone':
-                                            return (
-                                                <ButtonText
-                                                    className='pt-0 pb-0'
-                                                    value={<i className='fab m-2 fa-lg fa-phone' style={{ color: '#32C8f4' }}>{`  ${contact[contactKey].value}`}</i>} />
-                                            );
-                                        case 'envelope':
-                                            return (
-                                                <ButtonText
-                                                    className='pt-0 pb-0'
-                                                    value={<i className='fab m-2 fa-lg fa-envelope' style={{ color: 'black' }}>{`  ${contact[contactKey].value}`}</i>} />
-                                            );
-                                        default:
-                                            break;
-                                    }
-                                })}
-                            </div>
-                            <div className='shareList mt-2'>
-                                <H5Styled>Compartir</H5Styled>
-                                    <ButtonText
-                                        className='pt-0 pb-0'
-                                        value={<i className='fab m-2 fa-lg fa-whatsapp' style={{ color: '#25D366' }}></i>} />
-                                    <ButtonText
-                                        className='pt-0 pb-0'
-                                        value={<i className='fab m-2 fa-lg fa-facebook-f' style={{ color: '#3B5998' }}></i>} />
-                                    <ButtonText
-                                        className='pt-0 pb-0'
-                                        value={<i className='fab m-2 fa-lg fa-facebook-messenger' style={{ color: '#2196F3' }}></i>} />
                             </div>
                         </div>
                     </div>
@@ -123,10 +135,7 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                 .contactList {
                     max-height: ${contactDialogOpen ? '100%' : '0'};
                     overflow: hidden;
-                }
-                .shareList {
-                    max-height: ${shareDialogOpen ? '100%' : '0'};
-                    overflow: hidden;
+                    transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
                 }
             `}</style>
         </>
