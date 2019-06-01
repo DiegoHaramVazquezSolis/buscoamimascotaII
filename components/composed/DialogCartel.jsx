@@ -30,24 +30,8 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
             </Head>
             }
             <Dialog open={open} closeDialog={onCloseDialog}>
-                <div className='container mt-3'>
+                <div className='container'>
                     <div className='row'>
-                        <div className='col-sm-12 col-md-4'></div>
-                        <div className='col-sm-12 col-md-8'>
-                            <H4Styled className='mb-0'>{name}</H4Styled>
-                            <div className='row'>
-                                <div className='col-sm-12 col-md-6'>
-                                    <Body2 style={{ color: '#828282' }}>
-                                        Especie: {specie} Sexo: {sex}
-                                    </Body2>
-                                </div>
-                                <div className='col-sm-12 col-md-6'>
-                                    <Body2 style={{ color: '#828282' }}>
-                                        {place}
-                                    </Body2>
-                                </div>
-                            </div>
-                        </div>
                         <div className='col-sm-12 col-md-4 mb-4'>
                             <div
                                 className='mb-3 rounded'
@@ -55,7 +39,7 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                                     background: `url(${image})`,
                                     backgroundColor: '#C4C4C4',
                                     width: '100%',
-                                    height: '260px',
+                                    height: '300px',
                                     backgroundSize: 'cover'
                                 }}></div>
                             <Body1 className='mb-2 text-center'>Visto por ultima vez el día: {date}</Body1>
@@ -117,6 +101,19 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-8'>
+                            <H4Styled className='mb-0'>{name}</H4Styled>
+                            <div className='row'>
+                                <div className='col-sm-12 col-md-6'>
+                                    <Body2 style={{ color: '#828282' }}>
+                                        Especie: {specie} Sexo: {sex}
+                                    </Body2>
+                                </div>
+                                <div className='col-sm-12 col-md-6'>
+                                    <Body2 style={{ color: '#828282' }}>
+                                        {place}
+                                    </Body2>
+                                </div>
+                            </div>
                             <Subtitle1 style={{ color: '#4F4F4F' }}>
                                 {description}
                             </Subtitle1>
@@ -129,9 +126,6 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                 </div>
             </Dialog>
             <style jsx>{`
-                .card {
-                    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
-                }
                 .contactList {
                     max-height: ${contactDialogOpen ? '100%' : '0'};
                     overflow: hidden;

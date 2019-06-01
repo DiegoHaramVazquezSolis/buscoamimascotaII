@@ -46,8 +46,8 @@ class Dialog extends React.Component {
                                     <H5Styled>{title}</H5Styled>
                                 </div>
                             }
-                            <div className='col-12 position-fixed pb-2' style={{ zIndex: 1, width: 'auto', color: primaryColor }}>
-                                <i className='fas fa-arrow-left mt-3 fa-2x' style={{ cursor: 'pointer' }} onClick={() => this.props.closeDialog()}></i>
+                            <div style={{ color: primaryColor }}>
+                                <i className='fas fa-times-circle float-right fa-2x mr-2 mt-2' style={{ cursor: 'pointer' }} onClick={() => this.props.closeDialog()}></i>
                             </div>
                             <div className='dialogBody mt-3'>
                                 {children}
