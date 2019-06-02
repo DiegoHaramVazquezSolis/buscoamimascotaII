@@ -123,7 +123,7 @@ const SignInView = () => {
             </form>
             {showShortPasswordAlert &&
                 <div className={`fade secondaryColor alert ${showShortPasswordAlert ? 'show' : ''}`}>
-                    La contraseña debe tener al menos seis caracteres de longitud.
+                    La contraseña debe tener al menos seis caracteres de longitud
                 </div>
             }
             {showEmailInUseAlert &&
