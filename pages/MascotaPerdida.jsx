@@ -25,7 +25,7 @@ const MascotaPerdida = withRouter((props) => {
             </Head>
             <Navigation activeIndex={1} />
             <div className='container'>
-                <Link as='/home' href='/'>
+                <Link href='/mascotasperdidas'>
                     <div className='d-flex'>
                         <i className='fas fa-arrow-left fa-2x mr-2'
                             style={{ cursor: 'pointer', color: primaryColor }}></i>

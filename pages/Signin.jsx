@@ -8,7 +8,7 @@ const Signin = () => {
             <Head>
                 <title>Registrarse</title>
             </Head>
-            <Navigation activeIndex={4} />
+            <Navigation activeIndex={3} />
             <SignInView />
         </>
     );

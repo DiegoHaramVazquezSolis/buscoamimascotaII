@@ -17,7 +17,7 @@ const Navigation = ({ activeIndex }) => {
                             </Tab>
                         </Nav.Link>
                         <Nav.Link>
-                            <Tab active={activeIndex === 1} href='/'>
+                            <Tab active={activeIndex === 1} href='/mascotasperdidas'>
                                 Mascotas perdidas
                             </Tab>
                         </Nav.Link>
@@ -27,12 +27,12 @@ const Navigation = ({ activeIndex }) => {
                             </Tab>
                         </Nav.Link>
                         <Nav.Link>
-                            <Tab active={activeIndex === 3} href='/'>
-                                Historias
+                            <Tab active={activeIndex === 3} href='/signin'>
+                                Registrarse
                             </Tab>
                         </Nav.Link>
                         <Nav.Link>
-                            <Tab active={activeIndex === 4} href='/'>
+                            <Tab active={activeIndex === 4} href='/login'>
                                 Iniciar sesión
                             </Tab>
                         </Nav.Link>
