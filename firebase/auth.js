@@ -1,4 +1,4 @@
-import { auth } from './firebase';
+import { auth, fbProvider } from './firebase';
 
 /**
  * Create a new account based on email and password
@@ -18,6 +18,13 @@ export async function createUserWithEmailAndPassword(email, password) {
  */
 export async function signInWithEmailAndPassword(email, password) {
     return await auth.signInWithEmailAndPassword(email, password);
+}
+
+/**
+ * SignIn or Login a user based on their facebook account
+ */
+export async function signInUserWithFacebook() {
+    return await auth.signInWithPopup(fbProvider);
 }
 
 /**
