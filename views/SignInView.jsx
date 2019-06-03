@@ -5,8 +5,9 @@ import InputField from '../components/primitives/FormControls/InputField';
 import ButtonOutlined from '../components/primitives/Buttons/ButtonOutlined';
 import ButtonRaised from '../components/primitives/Buttons/ButtonRaised';
 import { secondaryColor } from '../components/styled/Constants';
-import { createUserWithEmailAndPassword, updateUserProfileData } from '../firebase/auth';
-import { createUseRecord } from '../firebase/database';
+import { createUserWithEmailAndPassword, updateUserProfileData, signInUserWithFacebook } from '../firebase/auth';
+import { createUserRecordBasedOnEmail, createUserRecordBasedOnFacebook } from '../firebase/database';
+import FacebookLoginButton from '../components/primitives/Buttons/FacebookLoginButton';
 
 const SignInView = () => {
     let formState = {
@@ -46,7 +47,7 @@ const SignInView = () => {
             .then((user) => {
                 setShowAlert(alertState);
                 updateUserProfileData({ displayName: name }).then(() => {
-                    createUseRecord(user.user);
+                    createUserRecordBasedOnEmail(user.user);
                 });
             }, (error) => {
                 switch(error.code) {
@@ -68,6 +69,15 @@ const SignInView = () => {
             setShowAlert(alertState);
             setShowAlert({ showVerifyAlert: true })
         }
+    }
+
+    function loginWithFb() {
+        signInUserWithFacebook().then(function(result) {
+            var token = result.credential.accessToken;
+            createUserRecordBasedOnFacebook(result.user, token);
+          }).catch(function(error) {
+            console.log(error.code, error.message);
+        });
     }
 
     return (
@@ -121,6 +131,11 @@ const SignInView = () => {
                     <ButtonRaised value='Registrarme!' type='submit' />
                 </div>
             </form>
+            <div className='col-12'>
+                <div className='d-flex justify-content-center mt-3 mb-3'>
+                    <FacebookLoginButton onClick={loginWithFb} />
+                </div>
+            </div>
             {showShortPasswordAlert &&
                 <div className={`fade secondaryColor alert ${showShortPasswordAlert ? 'show' : ''}`}>
                     La contraseña debe tener al menos seis caracteres de longitud

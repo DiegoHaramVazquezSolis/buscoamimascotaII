@@ -4,7 +4,9 @@ import Subtitle1 from '../components/styled/Subtitle1';
 import InputField from '../components/primitives/FormControls/InputField';
 import ButtonRaised from '../components/primitives/Buttons/ButtonRaised';
 import { primaryColor, secondaryColor } from '../components/styled/Constants';
-import { signInWithEmailAndPassword } from '../firebase/auth';
+import { signInWithEmailAndPassword, signInUserWithFacebook } from '../firebase/auth';
+import { createUserRecordBasedOnFacebook } from '../firebase/database';
+import FacebookLoginButton from '../components/primitives/Buttons/FacebookLoginButton';
 
 const LogInView = () => {
     let formState = {
@@ -52,7 +54,16 @@ const LogInView = () => {
                     setShowAlert({ accountWithDifferenteCredential: true });
                     break;
             }
-        })
+        });
+    }
+
+    function loginWithFb() {
+        signInUserWithFacebook().then(function(result) {
+            var token = result.credential.accessToken;
+            createUserRecordBasedOnFacebook(result.user, token);
+          }).catch(function(error) {
+            console.log(error.code, error.message);
+        });
     }
 
     return (
@@ -89,6 +100,11 @@ const LogInView = () => {
                     <ButtonRaised value='Registrarme!' type='submit' />
                 </div>
             </form>
+            <div className='col-12'>
+                <div className='d-flex justify-content-center mt-3 mb-3'>
+                    <FacebookLoginButton onClick={loginWithFb} />
+                </div>
+            </div>
             {userNotFoundAlert &&
                 <div className={`fade secondaryColor alert ${userNotFoundAlert ? 'show' : ''}`}>
                     No existe un usuario registrado con este correo
