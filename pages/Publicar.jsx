@@ -23,7 +23,9 @@ import Map from '../components/primitives/Map/Map';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import RequireAuth from '../components/primitives/RequireAuth';
-import { db, storage } from '../firebase/firebase';
+import { db } from '../firebase/firebase';
+import { publishMascotaPerdida } from '../firebase/database';
+import { uploadFileByReference, getDownloadURLByReference } from '../firebase/storage';
 
 const SubtitlePublicar = ({ children }) => (
     <>
@@ -94,7 +96,7 @@ const Publicar = () => {
         if (location.LatLng.latitude !== 0 && location.LatLng.longitude !== 0) {
             if (description !== '') {
                 if (files.length > 0) {
-                    db.child('Perdidas').push({
+                    const mascotaInfo = {
                         name: name,
                         specie: specie,
                         sex: sex,
@@ -105,18 +107,25 @@ const Publicar = () => {
                         lastSeen: lastSeen,
                         haveId: haveId,
                         contact: contactObject
-                    }).then((reference) => {
-                        const storageRef = storage.ref(`/Perdidas/${name}-${reference.key}`);
-                        const task = storageRef.put(files[0]);
-                        task.on('state_changed', (snapshot) => {
-                            // Se lanza durante el progreso de subida
-                          }, (error) => {
-                              console.error(error);
-                          }, () => {
-                              storageRef.getDownloadURL().then((url) => {
-                                db.child('Perdidas').child(reference.key).update({image: url});
-                              });
-                          });
+                    };
+                    publishMascotaPerdida(mascotaInfo)
+                    .then((reference) => {
+                        const storageRef = `/Perdidas/${name}-${reference.key}`;
+                        uploadFileByReference(storageRef, files[0])
+                        .on('state_changed', (snapshot) => {
+                            // Mientras el archivo se sube
+                             }, (error) => {
+                                alert('Hubo un error mientras se publicaba la imagen');
+                                console.error(error);
+                            }, () => {
+                                getDownloadURLByReference(storageRef).then((url) => {
+                                    db.child('Perdidas').child(reference.key).update({image: url});
+                            });
+                        });
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        alert('Hubo un error al guardar la información');
                     });
                 } else {
                     alert('Selecciona una imagen de tu mascota');
@@ -199,13 +208,11 @@ const Publicar = () => {
                                 value={description} />
                         </Col>
                         <Col sm={12} md={6} className='mt-2'>
-                            <section className='container'>
-                                <DropZoneWithPreview title='Imagen de tu mascota'
-                                    files={files}
-                                    getInputProps={getInputProps}
-                                    getRootProps={getRootProps}
-                                    removeImages={removeImages} />
-                            </section>
+                            <DropZoneWithPreview title='Imagen de tu mascota'
+                                files={files}
+                                getInputProps={getInputProps}
+                                getRootProps={getRootProps}
+                                removeImages={removeImages} />
                         </Col>
                         <Col xl={12} className='mt-4'>
                             <SubtitlePublicar>
@@ -299,12 +306,14 @@ const Publicar = () => {
                                                             type='email'
                                                             value={contactNode.content}
                                                             placeholder='Direccion de correo electronico'
+                                                            required={false}
                                                             onChange={(e) => {var contactCopy = contact; contactCopy[index].content = e.target.value; setState({ contact: contactCopy });}} />
                                                         :
                                                         <InputField disabled={contactNode.lock}
                                                             type='phone'
                                                             value={contactNode.content}
                                                             placeholder='Numero de telefono'
+                                                            required={false}
                                                             onChange={(e) => {var contactCopy = contact; contactCopy[index].content = e.target.value; setState({ contact: contactCopy });}} />
                                                         }
                                                     </Col>

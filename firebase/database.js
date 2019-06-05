@@ -25,3 +25,11 @@ export function createUserRecordBasedOnFacebook(user, token) {
         fbToken: token
     });
 }
+
+/**
+ * Write on database a publication of a mascota perdida
+ * @param {object} mascotaInfo Information of the mascota perdida
+ */
+export async function publishMascotaPerdida(mascotaInfo){
+    return await db.child('Perdidas').push(mascotaInfo);
+}
