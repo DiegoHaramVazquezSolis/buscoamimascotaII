@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { primaryColorRGB } from '../../styled/Constants';
 import Body1 from '../../styled/Body1';
 
-const SelectField = ({ name, label, className, onChange, value, disabled, children }) => {
+const SelectField = ({ name, label, className, onChange, value, disabled, children, required }) => {
     return (
         <>
             <label htmlFor={name}><Body1>{label}</Body1></label>
@@ -13,7 +13,8 @@ const SelectField = ({ name, label, className, onChange, value, disabled, childr
                 onChange={onChange}
                 value={value}
                 className={`form-control ${className ? className : ''}`}
-                disabled={disabled}>
+                disabled={disabled}
+                required={required}>
                     {children}
                 </select>
             <style jsx>{`
@@ -39,7 +40,8 @@ const SelectField = ({ name, label, className, onChange, value, disabled, childr
 }
 
 SelectField.defaultProps = {
-    disabled: false
+    disabled: false,
+    required: true
 };
 
 SelectField.propTypes = {
