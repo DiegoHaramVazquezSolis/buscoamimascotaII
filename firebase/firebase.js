@@ -19,5 +19,5 @@ if (firebase.apps.length <= 0) {
 
 export const auth = firebase.auth();
 export const db = firebase.database().ref('/');
-export const storage = firebase.storage().ref('/');
+export const storage = firebase.storage();
 export const fbProvider = new firebase.auth.FacebookAuthProvider();
