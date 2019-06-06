@@ -26,3 +26,15 @@ export function getDistanceFromLatLonInKm(cc1, cc2) {
 function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
+
+/**
+ * Sample objects
+ * var cc1 = {
+        lat: -103.4292657,
+        lon: 20.6115058
+    };
+    var cc2 = {
+        lat: -103.4155404,
+        lon: 20.6072093
+    };
+ */
