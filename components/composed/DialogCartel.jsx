@@ -10,18 +10,19 @@ import Map from '../primitives/Map/Map';
 import CheckBoxField from '../primitives/FormControls/CheckBoxField';
 import ButtonText from '../primitives/Buttons/ButtonText';
 import Body2 from '../styled/Body2';
+import { primaryColor } from '../styled/Constants';
 
 const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId, contact, image, open, closeDialog }) => {
     const [contactDialogOpen, setContactDialogOpen] = useState(false);
-    const [shareDialogOpen, setShareDialogOpen] = useState(false);
     if (open) {
         history.pushState(null, '', `/mascotaperdida/${id}`);
     }
     function onCloseDialog() {
         setContactDialogOpen(false);
-        setShareDialogOpen(false);
         closeDialog();
     }
+    var localContact = {};
+    Object.assign(localContact, contact);
     return(
         <>
             {open &&
@@ -34,17 +35,15 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                     <div className='row'>
                         <div className='col-sm-12 col-md-4 mb-4'>
                             <div
-                                className='mb-3 rounded'
+                                className='mb-3 rounded cover-bg'
                                 style={{ 
-                                    background: `url(${image})`,
-                                    backgroundColor: '#C4C4C4',
                                     width: '100%',
                                     height: '300px',
-                                    backgroundSize: 'cover'
+                                    background: `url(${image})`
                                 }}></div>
                             <Body1 className='mb-2 text-center'>Visto por ultima vez el día: {date}</Body1>
                             <div className='d-flex justify-content-center mt-3 mb-3'>
-                                <ButtonRaised value='Contactar' onClick={() => {setShareDialogOpen(false); setContactDialogOpen(true);}} />
+                                <ButtonRaised value='Contactar' onClick={() => setContactDialogOpen(true)} />
                             </div>
                             <div className='mt-3'>
                                 <div className='d-flex justify-content-center'>
@@ -60,14 +59,14 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                                 </div>
                             </div>
                             <div className='contactList row mt-1'>
-                                {Object.keys(contact).map((contactKey) => {
-                                    switch (contact[contactKey].type) {
+                                {Object.keys(localContact).map((contactKey) => {
+                                    switch (localContact[contactKey].type) {
                                         case 'whatsapp':
                                             return (
                                                 <div className='col-6'>
                                                     <ButtonText
                                                         className='pt-0 pb-0 pl-0 pr-0'
-                                                        value={<i className='fab m-2 fa-lg fa-whatsapp' style={{ color: '#25D366' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                                        value={<><i className='fab m-2 fa-lg fa-whatsapp' style={{ color: '#25D366' }}></i>{`  ${localContact[contactKey].content}`}</>} />
                                                 </div>
                                             );
                                         case 'mobile':
@@ -75,7 +74,7 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                                                 <div className='col-6'>
                                                     <ButtonText
                                                         className='pt-0 pb-0 pl-0 pr-0'
-                                                        value={<i className='fab m-2 fa-lg fa-mobile' style={{ color: 'black' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                                        value={<><i className='fab m-2 fa-lg fa-mobile' style={{ color: primaryColor }}></i>{`  ${localContact[contactKey].content}`}</>} />
                                                 </div>
                                             );
                                         case 'phone':
@@ -83,7 +82,7 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                                                 <div className='col-6'>
                                                     <ButtonText
                                                         className='pt-0 pb-0 pl-0 pr-0'
-                                                        value={<i className='fab m-2 fa-lg fa-phone' style={{ color: '#32C8f4' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                                        value={<><i className='fab m-2 fa-lg fa-phone' style={{ color: primaryColor }}></i>{`  ${localContact[contactKey].content}`}</>} />
                                                 </div>
                                             );
                                         case 'envelope':
@@ -91,7 +90,7 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                                                 <div className='col-6'>
                                                     <ButtonText
                                                         className='pt-0 pb-0 pl-0 pr-0'
-                                                        value={<i className='fab m-2 fa-lg fa-envelope' style={{ color: 'black' }}>{`  ${contact[contactKey].value}`}</i>} />
+                                                        value={<><i className='fas m-2 fa-lg fa-envelope' style={{ color: primaryColor }}></i>{`  ${localContact[contactKey].content}`}</>} />
                                                 </div>
                                             );
                                         default:
@@ -130,6 +129,10 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                     max-height: ${contactDialogOpen ? '100%' : '0'};
                     overflow: hidden;
                     transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                }
+                .cover-bg {
+                    background-size: cover !important;
+                    background-color: #C4C4C4 !important;
                 }
             `}</style>
         </>
