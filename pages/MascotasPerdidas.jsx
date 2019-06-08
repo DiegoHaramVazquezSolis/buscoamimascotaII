@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Navigation from './../components/composed/Navigation';
 import CardCartel from './../components/composed/CardCartel';
@@ -8,10 +8,27 @@ import H4Styled from './../components/styled/H4Styled';
 import List from './../components/primitives/List/List';
 import ListItem from './../components/primitives/List/ListItem';
 import ButtonText from './../components/primitives/Buttons/ButtonText';
+import { connect } from 'react-redux';
+import { loadPerdidas } from '../redux/actions/perdidasActions';
 
-const MascotasPerdidas = () => {
+const MascotasPerdidas = ({ perdidas }) => {
+    const shapeSelectedMascota = {
+        name: '',
+        specie:'',
+        sex: '',
+        id: '',
+        image: 'https://images.unsplash.com/photo-1534985111090-85c477f9d813?ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80',
+        place: '',
+        description: '',
+        haveId: '',
+        contact: [],
+        date: ''
+    }
     const [ openCartel, setOpenCartel ] = useState(false);
     const [ openContact, setOpenContact ] = useState(false);
+    const [ selectedMascota, setSelectedMascota ] = useState(shapeSelectedMascota);
+    const localContact = {};
+    Object.assign(localContact, selectedMascota.contact);
     return (
         <>
             <Head>
@@ -20,78 +37,64 @@ const MascotasPerdidas = () => {
             <Navigation activeIndex={1} />
             <div className='container'>
                 <div className='row'>
-                    <CardCartel
-                        onVerMasClick={() => setOpenCartel(true)}
-                        onContactarClick={() => setOpenContact(true)}
-                        image='https://images.unsplash.com/photo-1490042706304-06c664f6fd9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80'
-                        name='Kenji'
-                        date='25/05/2019'
-                        description='Kenji es un perrito bonito y gordito, beagle de 5 años de edad' />
-                    <CardCartel
-                        onVerMasClick={() => setOpenCartel(true)}
-                        onContactarClick={() => setOpenContact(true)}
-                        image='https://images.unsplash.com/photo-1490042706304-06c664f6fd9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80'
-                        name='Kenji'
-                        date='25/05/2019'
-                        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et pharetra erat. Etiam sem quam, fringilla eget elementum vel, imperdiet a est. Vestibulum eget blandit purus. Suspendisse potenti. Nunc nibh dolor, laoreet nec efficitur ut, vestibulum quis elit. Integer vitae finibus odio, sit amet pellentesque erat. Sed interdum quis nisi non posuere. Integer interdum ac lectus ac blandit. Fusce sed ultricies magna. Vivamus in mi nisl. Vivamus ac eleifend lorem. Duis dui tortor, convallis ut erat sed, dignissim hendrerit tellus. Suspendisse leo lorem, imperdiet nec erat a, facilisis congue odio.' />
-                    <CardCartel
-                        onVerMasClick={() => setOpenCartel(true)}
-                        onContactarClick={() => setOpenContact(true)}
-                        image='https://images.unsplash.com/photo-1490042706304-06c664f6fd9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80'
-                        name='Kenji'
-                        date='25/05/2019'
-                        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et pharetra erat. Etiam sem quam, fringilla eget elementum vel, imperdiet a est. Vestibulum eget blandit purus. Suspendisse potenti. Nunc nibh dolor, laoreet nec efficitur ut, vestibulum quis elit. Integer vitae finibus odio, sit amet pellentesque erat. Sed interdum quis nisi non posuere. Integer interdum ac lectus ac blandit. Fusce sed ultricies magna. Vivamus in mi nisl. Vivamus ac eleifend lorem. Duis dui tortor, convallis ut erat sed, dignissim hendrerit tellus. Suspendisse leo lorem, imperdiet nec erat a, facilisis congue odio.' />
-                    <CardCartel
-                        onVerMasClick={() => setOpenCartel(true)}
-                        onContactarClick={() => setOpenContact(true)}
-                        image='https://images.unsplash.com/photo-1490042706304-06c664f6fd9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80'
-                        name='Kenji'
-                        date='25/05/2019'
-                        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et pharetra erat. Etiam sem quam, fringilla eget elementum vel, imperdiet a est. Vestibulum eget blandit purus. Suspendisse potenti. Nunc nibh dolor, laoreet nec efficitur ut, vestibulum quis elit. Integer vitae finibus odio, sit amet pellentesque erat. Sed interdum quis nisi non posuere. Integer interdum ac lectus ac blandit. Fusce sed ultricies magna. Vivamus in mi nisl. Vivamus ac eleifend lorem. Duis dui tortor, convallis ut erat sed, dignissim hendrerit tellus. Suspendisse leo lorem, imperdiet nec erat a, facilisis congue odio.' />
-                    <CardCartel
-                        onVerMasClick={() => setOpenCartel(true)}
-                        onContactarClick={() => setOpenContact(true)}
-                        image='https://images.unsplash.com/photo-1490042706304-06c664f6fd9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80'
-                        name='Kenji'
-                        date='25/05/2019'
-                        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et pharetra erat. Etiam sem quam, fringilla eget elementum vel, imperdiet a est. Vestibulum eget blandit purus. Suspendisse potenti. Nunc nibh dolor, laoreet nec efficitur ut, vestibulum quis elit. Integer vitae finibus odio, sit amet pellentesque erat. Sed interdum quis nisi non posuere. Integer interdum ac lectus ac blandit. Fusce sed ultricies magna. Vivamus in mi nisl. Vivamus ac eleifend lorem. Duis dui tortor, convallis ut erat sed, dignissim hendrerit tellus. Suspendisse leo lorem, imperdiet nec erat a, facilisis congue odio.' />
+                    {perdidas && Object.keys(perdidas).map((mascotaPerdidaKey) => (
+                        <CardCartel
+                            onVerMasClick={() => {setSelectedMascota({ ...perdidas[mascotaPerdidaKey], id: mascotaPerdidaKey }); setOpenCartel(true);}}
+                            onContactarClick={() => {setSelectedMascota(perdidas[mascotaPerdidaKey]); setOpenContact(true)}}
+                            image={perdidas[mascotaPerdidaKey].image}
+                            name={perdidas[mascotaPerdidaKey].name}
+                            date={perdidas[mascotaPerdidaKey].date}
+                            description={perdidas[mascotaPerdidaKey].description} />
+                    ))}
                 </div>
             </div>
             <DialogCartel
-                name='Kenji'
-                specie='Perro'
-                sex='Macho'
-                id='-Lonuncsdg97cn9sd'
-                image='https://images.unsplash.com/photo-1534985111090-85c477f9d813?ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80'
-                place='Guadalajara, Jalisco, Mexico'
-                description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et pharetra erat. Etiam sem quam, fringilla eget elementum vel, imperdiet a est. Vestibulum eget blandit purus. Suspendisse potenti. Nunc nibh dolor, laoreet nec efficitur ut, vestibulum quis elit. Integer vitae finibus odio, sit amet pellentesque erat. Sed interdum quis nisi non posuere. Integer interdum ac lectus ac blandit. Fusce sed ultricies magna. Vivamus in mi nisl. Vivamus ac eleifend lorem. Duis dui tortor, convallis ut erat sed, dignissim hendrerit tellus.'
-                haveId={false}
+                name={selectedMascota.name}
+                specie={selectedMascota.specie}
+                sex={selectedMascota.sex}
+                id={selectedMascota.id}
+                image={selectedMascota.image}
+                place={selectedMascota.place}
+                description={selectedMascota.description}
+                haveId={selectedMascota.haveId}
                 closeDialog={() => {setOpenCartel(false); history.pushState(null, '', `/mascotasperdidas`);}}
                 open={openCartel}
-                contact={
-                    {
-                        ndsndias: {
-                            type: 'whatsapp',
-                            value: 3312971299
-                        },
-                        dsad: {
-                            type: 'whatsapp',
-                            value: 3312971299
-                        },
-                        ndsndiadvsdvs: {
-                            type: 'whatsapp',
-                            value: 3312971299
-                        },
-                    }
-                }
-                date='26/05/2020' />
+                contact={selectedMascota.contact}
+                date={selectedMascota.date} />
             <Modal size='sm' centered show={openContact} onHide={() => setOpenContact(false)}>
                 <Modal.Body>
                     <H4Styled>Contacto</H4Styled>
                     <List>
-                        <ListItem>
-                            <ButtonText className='w-100' value={<><i className='fab fa-whatsapp fa-lg mr-3'></i>33 12 97 12 99</>} />
-                        </ListItem>
+                        {Object.keys(localContact).map((contactKey) => {
+                            switch (localContact[contactKey].type) {
+                                case 'whatsapp':
+                                    return (
+                                        <ListItem>
+                                            <ButtonText className='w-100' value={<><i className='fab fa-whatsapp fa-lg mr-3' style={{ color: '#25D366' }}></i>{`  ${localContact[contactKey].content}`}</>} />
+                                        </ListItem>
+                                    );
+                                case 'mobile':
+                                    return (
+                                        <ListItem>
+                                            <ButtonText className='w-100' value={<><i className='fab fa-mobile fa-lg mr-3'></i>{`  ${localContact[contactKey].content}`}</>} />
+                                        </ListItem>
+                                    );
+                                case 'phone':
+                                    return (
+                                        <ListItem>
+                                            <ButtonText className='w-100' value={<><i className='fab fa-phone fa-lg mr-3'></i>{`  ${localContact[contactKey].content}`}</>} />
+                                        </ListItem>
+                                    );
+                                case 'envelope':
+                                    return (
+                                        <ListItem>
+                                            <ButtonText className='w-100' value={<><i className='fas fa-envelope fa-lg mr-3'></i>{`  ${localContact[contactKey].content}`}</>} />
+                                        </ListItem>
+                                    );
+                                default:
+                                    break;
+                            }
+                            })}
                     </List>
                 </Modal.Body>
             </Modal>
@@ -99,4 +102,15 @@ const MascotasPerdidas = () => {
     );
 }
 
-export default MascotasPerdidas;
+MascotasPerdidas.getInitialProps = async ({ store, isServer, pathname, query }) => {
+    await store.dispatch(loadPerdidas());
+    return {};
+}
+
+function mapStateToProps(state) {
+    return {
+        perdidas: state.perdidasReducer.perdidas
+    }
+}
+
+export default connect(mapStateToProps)(MascotasPerdidas);
