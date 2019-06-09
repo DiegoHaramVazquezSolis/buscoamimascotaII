@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Navigation from './../components/composed/Navigation';
 import CardCartel from './../components/composed/CardCartel';
@@ -10,6 +10,8 @@ import ListItem from './../components/primitives/List/ListItem';
 import ButtonText from './../components/primitives/Buttons/ButtonText';
 import { connect } from 'react-redux';
 import { loadPerdidas } from '../redux/actions/perdidasActions';
+import { makeGeolocationMapBoxQuery, getUserLocationBasedOnTheirIP } from '../algorithms';
+import InputField from '../components/primitives/FormControls/InputField';
 
 const MascotasPerdidas = ({ perdidas }) => {
     const shapeSelectedMascota = {
@@ -27,8 +29,19 @@ const MascotasPerdidas = ({ perdidas }) => {
     const [ openCartel, setOpenCartel ] = useState(false);
     const [ openContact, setOpenContact ] = useState(false);
     const [ selectedMascota, setSelectedMascota ] = useState(shapeSelectedMascota);
+    const [ query, setQuery ] = useState('');
+    const [ placesList, setPlacesList ] = useState([]);
     const localContact = {};
+    function getPosiblePlaces(query) {
+        makeGeolocationMapBoxQuery(query)
+        .then((response) => {
+            setPlacesList(response.data.features);
+        });
+    }
     Object.assign(localContact, selectedMascota.contact);
+    getUserLocationBasedOnTheirIP().then((response) => {
+        setQuery(`${response.data.city}, ${response.data.region_name}, ${response.data.country_name}`);
+    });
     return (
         <>
             <Head>
@@ -37,6 +50,22 @@ const MascotasPerdidas = ({ perdidas }) => {
             <Navigation activeIndex={1} />
             <div className='container'>
                 <div className='row'>
+                    <div className='col-12'>
+                        <InputField
+                            label='Ciudad'
+                            list='places'
+                            value={query}
+                            onChange={(e) => {
+                                setQuery(e.target.value);
+                                getPosiblePlaces(e.target.value)
+                                }
+                            } />
+                        <datalist id='places'>
+                            {placesList.map((place) => (
+                                <option value={place.place_name} />
+                            ))}
+                        </datalist>
+                    </div>
                     {perdidas && Object.keys(perdidas).map((mascotaPerdidaKey) => (
                         <CardCartel
                             onVerMasClick={() => {setSelectedMascota({ ...perdidas[mascotaPerdidaKey], id: mascotaPerdidaKey }); setOpenCartel(true);}}
