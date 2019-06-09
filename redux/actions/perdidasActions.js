@@ -1,8 +1,14 @@
 import { db } from '../../firebase/firebase';
-import { GET_PERDIDAS } from './../ReduxConstants';
+import { GET_PERDIDAS, GET_PERDIDA_BY_ID } from './../ReduxConstants';
 
 export const loadPerdidas = () => async dispatch => {
     await db.child('Perdidas').on('value', (mascotasPerdidas) => {
         return dispatch({ type: GET_PERDIDAS , payload: mascotasPerdidas.val() });
+    });
+}
+
+export const loadPerdidaById = (id) => async dispatch => {
+    await db.child('Perdidas').child(id).once('value', (mascotaPerdida) => {
+        return dispatch({ type: GET_PERDIDA_BY_ID, payload: mascotaPerdida.val() });
     });
 }

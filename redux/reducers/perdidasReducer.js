@@ -1,7 +1,8 @@
-import { GET_PERDIDAS } from './../ReduxConstants';
+import { GET_PERDIDAS, GET_PERDIDA_BY_ID } from './../ReduxConstants';
 
 const initialState = {
-    perdidas: {}
+    perdidas: {},
+    perdidaSelected: {}
 };
 
 function perdidasReducer(state = initialState, action) {
@@ -10,6 +11,11 @@ function perdidasReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 perdidas: action.payload
             });
+        case GET_PERDIDA_BY_ID: {
+            return Object.assign({}, state, {
+                perdidaSelected: action.payload
+            });
+        }
         default:
             return state;
       }
