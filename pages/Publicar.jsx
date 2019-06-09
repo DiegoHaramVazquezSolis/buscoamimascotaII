@@ -24,7 +24,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import RequireAuth from '../components/primitives/RequireAuth';
 import { db } from '../firebase/firebase';
-import { publishMascotaPerdida } from '../firebase/database';
+import { publishMascotaPerdida, savePlaceOfPerdidaOnDatabase } from '../firebase/database';
 import { uploadFileByReference, getDownloadURLByReference } from '../firebase/storage';
 
 const SubtitlePublicar = ({ children }) => (
@@ -110,6 +110,7 @@ const Publicar = () => {
                     };
                     publishMascotaPerdida(mascotaInfo)
                     .then((reference) => {
+                        savePlaceOfPerdidaOnDatabase(mascotaInfo.place);
                         const storageRef = `/Perdidas/${name}-${reference.key}`;
                         uploadFileByReference(storageRef, files[0])
                         .on('state_changed', (snapshot) => {

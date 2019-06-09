@@ -33,3 +33,7 @@ export function createUserRecordBasedOnFacebook(user, token) {
 export async function publishMascotaPerdida(mascotaInfo){
     return await db.child('Perdidas').push(mascotaInfo);
 }
+
+export async function savePlaceOfPerdidaOnDatabase(place) {
+    db.child('PerdidasPlaces').update({ [place]: place });
+}
