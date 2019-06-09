@@ -1,0 +1,18 @@
+{
+    "existing": {
+        "email": "diego@qapla.mx",
+        "password": "123456"
+    },
+    "notExisting": {
+        "name": "Diego",
+        "email": "diego@live.com.mx",
+        "password": "123456",
+        "verify": "123456"
+    },
+    "newUser": {
+        "name": "Diego",
+        "email": "diego@l.com.mx",
+        "password": "12345",
+        "verify": "12345"
+    }
+}
