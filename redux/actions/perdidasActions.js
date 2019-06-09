@@ -12,3 +12,9 @@ export const loadPerdidaById = (id) => async dispatch => {
         return dispatch({ type: GET_PERDIDA_BY_ID, payload: mascotaPerdida.val() });
     });
 }
+
+export const loadPerdidasByPlace = (placeOfInterest) => async dispatch => {
+    await db.child('Perdidas').orderByChild('place').equalTo(placeOfInterest).once('value', (mascotasPerdidas) => {
+        return dispatch({ type: GET_PERDIDAS , payload: mascotasPerdidas.val() || {} });
+    });
+}
