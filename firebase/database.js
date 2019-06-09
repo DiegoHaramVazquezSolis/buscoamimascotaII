@@ -34,6 +34,17 @@ export async function publishMascotaPerdida(mascotaInfo){
     return await db.child('Perdidas').push(mascotaInfo);
 }
 
+/**
+ * Save place (city, state and country) where Perdida was reported on database
+ * @param {string} place Name of place (city, state and country) where Perdida was reported
+ */
 export async function savePlaceOfPerdidaOnDatabase(place) {
     db.child('PerdidasPlaces').update({ [place]: place });
+}
+
+/**
+ * Get the list of places where are Perdidas reported
+ */
+export async function getPerdidasPlaces() {
+    return await db.child('PerdidasPlaces').once('value');
 }
