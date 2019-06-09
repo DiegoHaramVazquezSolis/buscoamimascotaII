@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { primaryColorRGB } from '../../styled/Constants';
 import Body1 from '../../styled/Body1';
 
-const InputField = ({ name, label, placeholder, disabled, type, className, required, value, onChange }) => {
+const InputField = ({ name, label, placeholder, disabled, type, className, required, value, onChange, list }) => {
     return (
         <>
             <label htmlFor={name}><Body1>{label}</Body1></label>
@@ -15,7 +15,8 @@ const InputField = ({ name, label, placeholder, disabled, type, className, requi
                 onChange={onChange}
                 value={value}
                 disabled={disabled}
-                required={required} />
+                required={required}
+                list={list} />
             <style jsx>{`
                 label {
                     margin: 0;
@@ -40,7 +41,8 @@ const InputField = ({ name, label, placeholder, disabled, type, className, requi
 InputField.defaultProps = {
     disabled: false,
     required: true,
-    type: 'text'
+    type: 'text',
+    list: ''
 }
 
 InputField.propTypes = {
@@ -58,7 +60,8 @@ InputField.propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string.isRequired,
-    required: PropTypes.bool
+    required: PropTypes.bool,
+    list: PropTypes.string
 };
 
 export default InputField;
