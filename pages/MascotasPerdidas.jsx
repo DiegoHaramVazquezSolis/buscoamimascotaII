@@ -13,6 +13,9 @@ import { loadPerdidasByPlace } from '../redux/actions/perdidasActions';
 import { getUserLocationBasedOnTheirIP } from '../algorithms';
 import InputField from '../components/primitives/FormControls/InputField';
 import { getPerdidasPlaces } from '../firebase/database';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import Body2 from '../components/styled/Body2';
 
 const MascotasPerdidas = ({ perdidas, loadPerdidasByPlace }) => {
     const shapeSelectedMascota = {
@@ -58,9 +61,23 @@ const MascotasPerdidas = ({ perdidas, loadPerdidasByPlace }) => {
                 <div className='row'>
                     <div className='col-12'>
                         <InputField
-                            label='Ciudad'
+                            label={<>
+                                Ciudad
+                                <OverlayTrigger
+                                    key={'placement'}
+                                    placement={'bottom'}
+                                    overlay={
+                                        <Tooltip id={`tooltip`}>
+                                            <Body2>
+                                                Los resultados muestran los reportes en la ciudad que selecciones
+                                            </Body2>
+                                        </Tooltip>}>
+                                        <i className='ml-1 fas fa-question'></i>
+                                </OverlayTrigger>
+                            </>}
                             list='places'
                             value={query}
+                            placeholder='Selecciona tu ciudad para obtener resultados cercanos'
                             onChange={(e) => {
                                 setQuery(e.target.value);
                                 getPosiblePlaces(e.target.value);
