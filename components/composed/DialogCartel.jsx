@@ -12,7 +12,7 @@ import ButtonText from '../primitives/Buttons/ButtonText';
 import Body2 from '../styled/Body2';
 import { primaryColor } from '../styled/Constants';
 
-const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId, contact, image, open, closeDialog }) => {
+const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId, contact, image, open, closeDialog, LatLng }) => {
     const [contactDialogOpen, setContactDialogOpen] = useState(false);
     if (open) {
         history.pushState(null, '', `/mascotaperdida/${id}`);
@@ -118,7 +118,12 @@ const DialogCartel = ({ id, name, date, specie, sex, place, description, haveId,
                             </Subtitle1>
                             <CheckBoxField className='mt-2 mb-0' disabled checked={haveId} label='Tiene placa de identificación' />
                             <div className='ml-2'>
-                                <Map label='Zona de la desaparición' draggable={false} initialPosition={{ latitude: 20.721870, longitude: -103.293555 }} />
+                                {open &&
+                                <Map
+                                    label='Zona de la desaparición'
+                                    draggable={false}
+                                    initialPosition={{ latitude: LatLng.latitude, longitude: LatLng.longitude }} />
+                                }
                             </div>
                         </div>
                     </div>
