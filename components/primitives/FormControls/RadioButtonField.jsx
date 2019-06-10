@@ -10,6 +10,8 @@ const RadioButtonField = ({ name, label, checked, onChange, className, required 
             <input
                 type='radio'
                 name={name}
+                id={name}
+                value={label}
                 checked={checked}
                 onChange={onChange}
                 required={required} />

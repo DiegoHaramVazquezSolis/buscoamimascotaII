@@ -10,6 +10,7 @@ const CheckBoxField = ({ name, label, checked, onChange, className, required }) 
             <input
                 type='checkbox'
                 name={name}
+                id={name}
                 checked={checked}
                 onChange={onChange}
                 required={required} />
