@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Navigation from './../components/composed/Navigation';
 import CardCartel from './../components/composed/CardCartel';
@@ -9,11 +9,12 @@ import List from './../components/primitives/List/List';
 import ListItem from './../components/primitives/List/ListItem';
 import ButtonText from './../components/primitives/Buttons/ButtonText';
 import { connect } from 'react-redux';
-import { loadPerdidas } from '../redux/actions/perdidasActions';
-import { makeGeolocationMapBoxQuery, getUserLocationBasedOnTheirIP } from '../algorithms';
+import { loadPerdidasByPlace } from '../redux/actions/perdidasActions';
+import { getUserLocationBasedOnTheirIP } from '../algorithms';
 import InputField from '../components/primitives/FormControls/InputField';
+import { getPerdidasPlaces } from '../firebase/database';
 
-const MascotasPerdidas = ({ perdidas }) => {
+const MascotasPerdidas = ({ perdidas, loadPerdidasByPlace }) => {
     const shapeSelectedMascota = {
         name: '',
         specie:'',
@@ -24,7 +25,11 @@ const MascotasPerdidas = ({ perdidas }) => {
         description: '',
         haveId: '',
         contact: [],
-        date: ''
+        date: '',
+        LatLng: {
+            latitude: 0,
+            longitude: 0
+        }
     }
     const [ openCartel, setOpenCartel ] = useState(false);
     const [ openContact, setOpenContact ] = useState(false);
@@ -33,15 +38,16 @@ const MascotasPerdidas = ({ perdidas }) => {
     const [ placesList, setPlacesList ] = useState([]);
     const localContact = {};
     function getPosiblePlaces(query) {
-        makeGeolocationMapBoxQuery(query)
-        .then((response) => {
-            setPlacesList(response.data.features);
-        });
+        loadPerdidasByPlace(placesList[query] || '');
     }
     Object.assign(localContact, selectedMascota.contact);
-    getUserLocationBasedOnTheirIP().then((response) => {
-        setQuery(`${response.data.city}, ${response.data.region_name}, ${response.data.country_name}`);
-    });
+    useEffect(() => {
+        getPerdidasPlaces().then((places) => setPlacesList(places.val()));
+        getUserLocationBasedOnTheirIP().then((response) => {
+            setQuery(`${response.data.city}, ${response.data.region_name}, ${response.data.country_name}`);
+            loadPerdidasByPlace(`${response.data.city}, ${response.data.region_name}, ${response.data.country_name}`);
+        });
+    }, []);
     return (
         <>
             <Head>
@@ -57,16 +63,16 @@ const MascotasPerdidas = ({ perdidas }) => {
                             value={query}
                             onChange={(e) => {
                                 setQuery(e.target.value);
-                                getPosiblePlaces(e.target.value)
+                                getPosiblePlaces(e.target.value);
                                 }
                             } />
                         <datalist id='places'>
-                            {placesList.map((place) => (
-                                <option value={place.place_name} />
+                            {Object.keys(placesList).map((placeKey, index) => (
+                                <option value={placesList[placeKey]} key={`place-${index}`} />
                             ))}
                         </datalist>
                     </div>
-                    {perdidas && Object.keys(perdidas).map((mascotaPerdidaKey) => (
+                    {Object.keys(perdidas).map((mascotaPerdidaKey) => (
                         <CardCartel
                             onVerMasClick={() => {setSelectedMascota({ ...perdidas[mascotaPerdidaKey], id: mascotaPerdidaKey }); setOpenCartel(true);}}
                             onContactarClick={() => {setSelectedMascota(perdidas[mascotaPerdidaKey]); setOpenContact(true)}}
@@ -77,6 +83,7 @@ const MascotasPerdidas = ({ perdidas }) => {
                     ))}
                 </div>
             </div>
+            {Object.keys(perdidas).length > 0 &&
             <DialogCartel
                 name={selectedMascota.name}
                 specie={selectedMascota.specie}
@@ -89,7 +96,10 @@ const MascotasPerdidas = ({ perdidas }) => {
                 closeDialog={() => {setOpenCartel(false); history.pushState(null, '', `/mascotasperdidas`);}}
                 open={openCartel}
                 contact={selectedMascota.contact}
-                date={selectedMascota.date} />
+                date={selectedMascota.date}
+                LatLng={selectedMascota.LatLng} />
+            }
+            {Object.keys(perdidas).length > 0 &&
             <Modal size='sm' centered show={openContact} onHide={() => setOpenContact(false)}>
                 <Modal.Body>
                     <H4Styled>Contacto</H4Styled>
@@ -127,13 +137,9 @@ const MascotasPerdidas = ({ perdidas }) => {
                     </List>
                 </Modal.Body>
             </Modal>
+            }
         </>
     );
-}
-
-MascotasPerdidas.getInitialProps = async ({ store, isServer, pathname, query }) => {
-    await store.dispatch(loadPerdidas());
-    return {};
 }
 
 function mapStateToProps(state) {
@@ -142,4 +148,10 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(MascotasPerdidas);
+function mapDispatchToProps(dispatch) {
+    return {
+        loadPerdidasByPlace: (placeOfInterest) => dispatch(loadPerdidasByPlace(placeOfInterest))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MascotasPerdidas);
