@@ -286,25 +286,26 @@ const Publicar = () => {
                                                     <Col className='d-flex justify-content-center mb-2 mt-2' sm={12} md={5}>
                                                         <ButtonText style={{ backgroundColor: contactNode.type==='whatsapp' && `rgba(${primaryColorRGB}, .3)` }}
                                                             className='pt-0 pb-0 mr-1 ml-1 mt-2'
-                                                            value={<i style={{ color: '#25D366' }}className='fab m-2 fa-lg fa-whatsapp'></i>}
+                                                            value={<i style={{ color: '#25D366' }}className={`fab m-2 fa-lg fa-whatsapp whatsapp-${index}`}></i>}
                                                             onClick={() => {var contactCopy = contact; contactCopy[index].type = 'whatsapp'; contactCopy[index].lock = false; setState({ contact: contactCopy });}} />
                                                         <ButtonText style={{ backgroundColor: contactNode.type==='mobile' && `rgba(${primaryColorRGB}, .3)` }}
                                                             className='pt-0 pb-0 mr-1 ml-1 mt-2'
-                                                            value={<i style={{ color: 'black' }} className='fas m-2 fa-lg fa-mobile'></i>}
+                                                            value={<i style={{ color: 'black' }} className={`fas m-2 fa-lg fa-mobile mobile-${index}`}></i>}
                                                             onClick={() => {var contactCopy = contact; contactCopy[index].type = 'mobile'; contactCopy[index].lock = false; setState({ contact: contactCopy });}} />
                                                         <ButtonText style={{ backgroundColor: contactNode.type==='phone' && `rgba(${primaryColorRGB}, .3)` }}
                                                             className='pt-0 pb-0 mr-1 ml-1 mt-2'
-                                                            value={<i style={{ color: '#32C8f4' }} className='fas m-2 fa-lg fa-phone'></i>}
+                                                            value={<i style={{ color: '#32C8f4' }} className={`fas m-2 fa-lg fa-phone phone-${index}`}></i>}
                                                             onClick={() => {var contactCopy = contact; contactCopy[index].type = 'phone'; contactCopy[index].lock = false; setState({ contact: contactCopy });}} />
                                                         <ButtonText style={{ backgroundColor: contactNode.type==='envelope' && `rgba(${primaryColorRGB}, .3)` }}
                                                             className='pt-0 pb-0 mr-1 ml-1 mt-2'
-                                                            value={<i style={{ color: 'black' }} className='fas m-2 fa-lg fa-envelope'></i>}
+                                                            value={<i style={{ color: 'black' }} className={`fas m-2 fa-lg fa-envelope envelope-${index}`}></i>}
                                                             onClick={() => {var contactCopy = contact; contactCopy[index].type = 'envelope'; contactCopy[index].lock = false; setState({ contact: contactCopy });}} />
                                                     </Col>
                                                     <Col sm={12} md={7}>
                                                         {contactNode.type === 'envelope' ?
                                                         <InputField disabled={contactNode.lock}
                                                             type='email'
+                                                            name={`contact-${index}`}
                                                             value={contactNode.content}
                                                             placeholder='Direccion de correo electronico'
                                                             required={false}
@@ -312,6 +313,7 @@ const Publicar = () => {
                                                         :
                                                         <InputField disabled={contactNode.lock}
                                                             type='phone'
+                                                            name={`contact-${index}`}
                                                             value={contactNode.content}
                                                             placeholder='Numero de telefono'
                                                             required={false}

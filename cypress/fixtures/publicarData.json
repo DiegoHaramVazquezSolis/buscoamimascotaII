@@ -3,7 +3,7 @@
         "name": "Mascota de prueba",
         "specie": "perro",
         "sex": "Hembra",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum molestie quam, at viverra velit fermentum vitae. Curabitur vitae ipsum nec enim malesuada ornare. In dapibus nisi massa, quis mollis mi posuere eu. Quisque quis iaculis elit, quis auctor nisl. Nulla mauris magna, egestas ut tempor ut, iaculis eu diam. Sed tincidunt condimentum congue. Pellentesque ultrices purus eget quam tempor, quis malesuada ligula viverra. Etiam vulputate augue felis, id lobortis leo aliquet in.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum molestie quam, at viverra velit fermentum vitae. Curabitur vitae ipsum nec enim malesuada ornare. In dapibus nisi massa, quis mollis mi posuere eu. Quisque quis iaculis elit, quis auctor nisl. Nulla mauris magna, egestas ut tempor ut, iaculis eu diam.",
         "date": "2019-06-08",
         "haveId": false,
         "contact": [
@@ -14,6 +14,14 @@
             {
                 "type": "phone",
                 "content": "33 33 33 33 33"
+            },
+            {
+                "type": "mobile",
+                "content": "33 33 33 33 33"
+            },
+            {
+                "type": "envelope",
+                "content": "diego@qapla.gg"
             }
         ]
     }

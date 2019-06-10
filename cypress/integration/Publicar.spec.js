@@ -27,7 +27,7 @@ describe('Publicar test', function() {
         cy.get('#haveId').check({force: true});
         
         this.publicar.newMascota.contact.map((contact, index) => {
-            cy.get(`.fa-${contact.type}-${index}`).click();
+            cy.get(`.${contact.type}-${index}`).click();
             cy.get(`#contact-${index}`)
                 .type(contact.content)
                 .should('have.value', contact.content);
